@@ -1,0 +1,107 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="query_module_div_1" title="查询条件"
+		class="easyui-panel queryform" style="width: 100%;">
+		<form id="cms_query_module_form"
+			style="width: 99%;padding-left:10%" class="easyui-form"
+			method="post" data-options="novalidate:true">
+			 <div class="col-sm-12 qry_tp0">
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="moduleName" style="width:300px; height: 30px;"
+						data-options="label:'模块名称:',labelWidth:'110px'">
+				</div>
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="moduleKey" style="width:300px; height: 30px;"
+						data-options="label:'模块Key:',labelWidth:'110px'">
+				</div>
+				<div class="col-sm-9 qry_btn0">
+					<div class="qcol col-sm-6">
+					 <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+	                       data-options="iconCls:'icon-search',iconAlign:'right'"
+	                       style="width:80px;">查询</a>
+		             </div>
+		              <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+	                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+	                       style="width:80px;margin-left: 40px;">重置</a>
+		             </div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div title="数据列表" class="easyui-panel " style="width: 100%;">
+	 	<table id="cms_module_list_datagrid" style="width: 100%;">
+	          <thead>
+		          <tr>
+		              <th data-options="field:'moduleId',width:'100'">模块编号</th>
+		              <th data-options="field:'moduleKey',width:'100'">模块Key</th>
+		              <th data-options="field:'moduleName',width:'100'">模块名称</th>
+		              <th data-options="field:'moduleDesc',width:'100'">描述信息</th>
+		              <th data-options="field:'display',formatter:function(val){
+            			  if(val=='1'){return '显示';}return '不显示';},width:'100'" >显示状态</th>
+		              <th data-options="field:'state',formatter:function(val){
+            			  if(val=='1'){return '正常';}return '禁用';},width:'100'" >模块状态</th>
+		              <th data-options="field:'displayOrder',width:'100'">模块排序</th>
+		              <th data-options="field:'categoryId',width:'100'">所属栏目编号</th>
+		          </tr>
+	          </thead>
+	      </table>
+	</div>
+	<div id="cms_update_module_dialog" style="position:absolute;top:-10000px;left:-10000px;">
+		<form id="cms_update_module_form" class="easyui-form queryform"
+			method="post" data-options="novalidate:true">
+			<input name="moduleId" type="hidden" />
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" name="moduleName" id="moduleName" style="width: 350px; height: 30px;"
+					data-options="labelAlign:'right',prompt:'请输入模块名称',labelWidth:'100px',
+			            label:'模块名称:',required:true,validType:'length[1,100]'" />
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" name="moduleKey" id="moduleKey"
+					style="width: 350px; height: 30px;"
+					data-options="labelAlign:'right',prompt:'请输入模块Key',labelWidth:'100px',
+			            label:'模块Key:',required:true,validType:'length[1,100]'" />
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" name="moduleDesc"
+					style="width: 350px; height: 30px;"
+					data-options="labelAlign:'right',prompt:'请输入模块描述',labelWidth:'100px',
+	                           label:'模块描述:'" />
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" name="displayOrder"
+					style="width: 350px; height: 30px;"
+					data-options="labelAlign:'right',prompt:'请输入模块排序',labelWidth:'100px',
+	                           label:'模块排序:'" />
+			</div>
+			<div class="qcol col-sm-12">
+				<label class="textbox-label textbox-label-before"
+					style="text-align: right; width: 100px; height: 30px; line-height: 30px;">
+					显示状态:</label> 
+					<input type="radio" name="display" value="1"></input>显示
+					<input type="radio" name="display" value="0"></input>不显示
+			</div>
+			<div class="qcol col-sm-12">
+				<label class="textbox-label textbox-label-before"
+					style="text-align: right; width: 100px; height: 30px; line-height: 30px;">
+					模块状态:</label> 
+					<input type="radio" name="state" value="1"></input>正常
+					<input type="radio" name="state" value="0"></input>禁用
+			</div>
+			<div class="qcol col-sm-12">
+				<input id="categoryTreeUpdate" name="categoryId" class="easyui-combotree"
+				 style="width: 350px;"
+					data-options="multiple:false,panelHeight:'auto',panelMaxHeight:200,
+	                   labelAlign:'right',labelWidth:'100px',label:'选择栏目:'"/>
+			</div>
+			
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="/js/cms/cms_edit_module.js"></script>
+<script type="text/javascript" src="/js/core/common.js"></script>
+<link rel="stylesheet" type="text/css" href="css/admin.css">
+<script type="text/javascript">
+	$.parser.parse(".easyuitag");
+</script>

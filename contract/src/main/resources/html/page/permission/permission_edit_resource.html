@@ -1,0 +1,81 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="permission_resource_div_1" title="查询条件"
+		class="easyui-panel queryform" style="width: 100%;">
+		<form id="permission_query_resource_form"
+			style="width: 99%;padding-left:10% " class="easyui-form"
+			method="post" data-options="novalidate:true">
+			<div class="col-sm-9">
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="text" style="width:300px; height: 30px;"
+						data-options="label:'菜单名称:',labelWidth:'110px'">
+				</div>
+				<div class="col-sm-6">
+				<div class="qcol col-sm-4">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+                       data-options="iconCls:'icon-search',iconAlign:'right'"
+                       style="width:80px;">查询</a>
+	             </div>
+	             <div class="qcol col-sm-4">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+                       style="width:80px;">重置</a>
+	             </div>
+				
+			</div>
+			
+			</div>
+		</form>
+	</div>
+	<div title="数据列表" class="easyui-panel " style="width: 100%;">
+		<table id="permission_resource_list_datagrid" style="width: 100%;">
+	          <thead>
+	          <tr>
+	              <th data-options="field:'id',width:'100'">菜单编号</th>
+	              <th data-options="field:'text',width:'100'">菜单名称</th>
+	              <th data-options="field:'iconCls',width:'100'">菜单图标</th>
+	              <th data-options="field:'pid',width:'100'" >上级菜单</th>
+	              <th data-options="field:'hrefUrl',width:'200'" >菜单路径</th>
+	              <th data-options="field:'status',formatter:function(val){
+            			  if(val=='1'){return '正常';}return '禁用';},width:'50'" >菜单状态</th>
+	              <th data-options="field:'orderNum',width:'100'">菜单排序</th>
+	          </tr>
+	          </thead>
+	      </table>
+	</div>
+	<div id="permission_edit_resource__dialog"  style="position: absolute;top:-10000px;left:-10000px;">
+		<form id="permission_edit_resource_form" class="easyui-form queryform" method="post" data-options="novalidate:false">
+				<input  name="id" type="hidden" />
+				<div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="text" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入菜单名称',labelWidth:'100px',
+					label:'菜单名称:',required:true,validType:'length[1,1024]'" />
+                </div>
+               <div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="iconCls" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入菜单图标',labelWidth:'100px',label:'菜单图标:'" />
+                </div>
+                <div class="qcol col-sm-12">
+                    <input class="easyui-numberbox" name="pid" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请选择上级菜单数字序号',labelWidth:'100px',label:'上级菜单:'" />
+                </div>
+                <div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="hrefUrl" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入菜单路径',labelWidth:'100px',label:'菜单路径:'" />
+                </div>
+                <div class="qcol col-sm-12">
+                    <input class="easyui-numberbox" name="orderNum" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入菜单数字序号',labelWidth:'100px',label:'菜单排序:'" />
+                </div>
+                <div class="qcol col-sm-12">
+                   <label class="textbox-label textbox-label-before" style="text-align:right;width:100px;height: 30px;line-height: 30px;">
+					菜单状态:</label>
+					<input type="radio" name="status" value="0"></input>禁用
+                    <input type="radio" name="status" value="1"></input>正常
+                </div>
+			</form>
+	</div>
+</div>
+<script type="text/javascript" src="/js/permission/permission_edit_resource.js"></script>
+<script type="text/javascript">
+	$.parser.parse(".easyuitag");
+</script>

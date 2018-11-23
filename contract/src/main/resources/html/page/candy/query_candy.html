@@ -1,0 +1,73 @@
+<!-- 这是运营的糖果信息页面，创建时间：2018-8-16;需求：对糖果信息进行增删改查. -->
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="query_candy_div_1" title="查询条件" class="easyui-panel queryform"
+	    style="width: 100%;">
+        <form id="query_candy_form" style="width:99%;padding-left:10%" class="easyui-form" method="post"
+              data-options="novalidate:true">
+            <div class="col-sm-9">
+                <div class="qcol col-sm-6">
+                    <input class="easyui-textbox" name="forEmail" style="width: 300px; height: 30px;"
+                           data-options="label:'email:'">
+                </div>
+                <div class="qcol col-sm-6">
+                    <input class="easyui-textbox" name="forHpbAddress" style="width: 300px; height: 30px;"
+                           data-options="label:'HPB adress:'">
+                </div>
+            </div>
+            <div class="col-sm-9">     
+            <div class="qcol col-sm-6">
+                    <div class="qcol col-sm-4">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+                       data-options="iconCls:'icon-search',iconAlign:'right'"
+                       style="width:80px;">查询</a>
+                </div>
+                <div class="qcol col-sm-4">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+                       style="width:80px;">重置</a>
+                </div>
+                </div>      
+               
+                <div class="qcol col-sm-6">
+                   
+                </div>
+            </div>
+        </form>
+	</div>
+    <table style="width: 100%;" id="query_candy_content" title="糖果信息列表">
+    	<thead data-options="frozen:false">
+			<tr>
+	        <th data-options="field:'email',width:200">email</th>
+	        <th data-options="field:'hpbAddress',width:320">HPB address</th>
+	        <th data-options="field:'ethAddress',width:320">ETH address</th>
+	        <th data-options="field:'candyNum',width:120">candy number</th>
+            <th data-options="field:'oper',formatter:formatOper" width="80">操作</th>
+        </tr>
+        </thead>
+    </table>
+    <div style="position:absolute;top:-10000px;left:-10000px;">
+        <form id="add_candy_form" class="easyui-form queryform" method="post"
+              data-options="novalidate:true">
+              <div class="qcol col-sm-12">
+                <input id="id" name="id" style="width:480px;height:30px;" type="hidden"
+                       data-options="labelAlign:'right',labelWidth:'120px',label:'id:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="email" name="email" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',labelWidth:'120px',label:'email:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="hpbAddress" name="hpbAddress" style="width:480px;height:30px;"
+                          data-options="labelAlign:'right',labelWidth:'120px',label:'HPB address:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="ethAddress" name="ethAddress" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',labelWidth:'120px',label:'ETH address:'" />
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="/js/candy/query_candy.js"></script>
+<script type="text/javascript">
+	$.parser.parse(".easyuitag");
+</script>

@@ -1,0 +1,55 @@
+.easyui .dialog-content {
+	overflow: auto;
+}
+
+.easyui .dialog-toolbar {
+	position: relative;
+	padding: 2px 5px;
+}
+
+.easyui .dialog-tool-separator {
+	float: left;
+	height: 24px;
+	border-left: 1px solid #444;
+	border-right: 1px solid #777;
+	margin: 2px 1px;
+}
+
+.easyui .dialog-button {
+	position: relative;
+	top: -1px;
+	padding: 5px;
+	text-align: right;
+}
+
+.easyui .dialog-button .l-btn {
+	margin-left: 5px;
+}
+
+.easyui .dialog-toolbar, .easyui  .dialog-button {
+	background: #555;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.easyui .dialog-toolbar {
+	border-color: #000 #000 #222 #000;
+}
+
+.easyui .dialog-button {
+	border-color: #222 #000 #000 #000;
+}
+
+.easyui .window-thinborder .dialog-toolbar {
+	border-left: transparent;
+	border-right: transparent;
+	border-top-color: #555;
+}
+
+.easyui .window-thinborder .dialog-button {
+	top: 0px;
+	padding: 5px 8px 8px 8px;
+	border-left: transparent;
+	border-right: transparent;
+	border-bottom: transparent;
+}

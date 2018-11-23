@@ -1,0 +1,196 @@
+.easyui .tree {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.easyui .tree li {
+	white-space: nowrap;
+}
+
+.easyui .tree li ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.easyui .tree-node {
+	height: 26px;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.easyui .tree-hit {
+	cursor: pointer;
+}
+
+.easyui .tree-expanded, .easyui  .tree-collapsed, .easyui  .tree-folder, .easyui  .tree-file, .easyui 
+	.tree-checkbox, .tree-indent {
+	display: inline-block;
+	width: 16px;
+	height: 18px;
+	margin: 4px 0;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+.easyui .tree-expanded {
+	background: url('images/tree_icons.png') no-repeat -18px 0px;
+}
+
+.easyui .tree-expanded-hover {
+	background: url('images/tree_icons.png') no-repeat -50px 0px;
+}
+
+.easyui .tree-collapsed {
+	background: url('images/tree_icons.png') no-repeat 0px 0px;
+}
+
+.easyui .tree-collapsed-hover {
+	background: url('images/tree_icons.png') no-repeat -32px 0px;
+}
+
+.easyui .tree-lines .tree-expanded, .easyui  .tree-lines .tree-root-first .tree-expanded
+	{
+	background: url('images/tree_icons.png') no-repeat -144px 0;
+}
+
+.easyui .tree-lines .tree-collapsed, .easyui  .tree-lines .tree-root-first .tree-collapsed
+	{
+	background: url('images/tree_icons.png') no-repeat -128px 0;
+}
+
+.easyui .tree-lines .tree-node-last .tree-expanded, .easyui  .tree-lines .tree-root-one .tree-expanded
+	{
+	background: url('images/tree_icons.png') no-repeat -80px 0;
+}
+
+.easyui .tree-lines .tree-node-last .tree-collapsed, .easyui  .tree-lines .tree-root-one .tree-collapsed
+	{
+	background: url('images/tree_icons.png') no-repeat -64px 0;
+}
+
+.easyui .tree-line {
+	background: url('images/tree_icons.png') no-repeat -176px 0;
+}
+
+.easyui .tree-join {
+	background: url('images/tree_icons.png') no-repeat -192px 0;
+}
+
+.easyui .tree-joinbottom {
+	background: url('images/tree_icons.png') no-repeat -160px 0;
+}
+
+.easyui .tree-folder {
+	background: url('images/tree_icons.png') no-repeat -208px 0;
+}
+
+.easyui .tree-folder-open {
+	background: url('images/tree_icons.png') no-repeat -224px 0;
+}
+
+.easyui .tree-file {
+	background: url('images/tree_icons.png') no-repeat -240px 0;
+}
+
+.easyui .tree-loading {
+	background: url('images/loading.gif') no-repeat center center;
+}
+
+.easyui .tree-checkbox0 {
+	background: url('images/tree_icons.png') no-repeat -208px -18px;
+}
+
+.easyui .tree-checkbox1 {
+	background: url('images/tree_icons.png') no-repeat -224px -18px;
+}
+
+.easyui .tree-checkbox2 {
+	background: url('images/tree_icons.png') no-repeat -240px -18px;
+}
+
+.easyui .tree-title {
+	font-size: 14px;
+	display: inline-block;
+	text-decoration: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	padding: 0 2px;
+	margin: 4px 0;
+	height: 18px;
+	line-height: 18px;
+}
+
+.easyui .tree-node-proxy {
+	font-size: 14px;
+	line-height: 20px;
+	padding: 0 2px 0 20px;
+	border-width: 1px;
+	border-style: solid;
+	z-index: 9900000;
+}
+
+.easyui .tree-dnd-icon {
+	display: inline-block;
+	position: absolute;
+	width: 16px;
+	height: 18px;
+	left: 2px;
+	top: 50%;
+	margin-top: -9px;
+}
+
+.easyui .tree-dnd-yes {
+	background: url('images/tree_icons.png') no-repeat -256px 0;
+}
+
+.easyui .tree-dnd-no {
+	background: url('images/tree_icons.png') no-repeat -256px -18px;
+}
+
+.easyui .tree-node-top {
+	border-top: 1px dotted red;
+}
+
+.easyui .tree-node-bottom {
+	border-bottom: 1px dotted red;
+}
+
+.easyui .tree-node-append .tree-title {
+	border: 1px dotted red;
+}
+
+.easyui .tree-editor {
+	border: 1px solid #95B8E7;
+	font-size: 14px;
+	height: 26px;
+	line-height: 26px;
+	padding: 0 4px;
+	margin: 0;
+	width: 80px;
+	outline-style: none;
+	vertical-align: middle;
+	position: absolute;
+	top: 0;
+}
+
+.easyui .tree-node-proxy {
+	background-color: #ffffff;
+	color: #000000;
+	border-color: #95B8E7;
+}
+
+.easyui .tree-node-hover {
+	background: #eaf2ff;
+	color: #000000;
+}
+
+.easyui .tree-node-selected {
+	background: #ffe48d;
+	color: #000000;
+}
+
+.easyui .tree-node-hidden {
+	display: none;
+}

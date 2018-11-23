@@ -1,0 +1,144 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="query_authorization_div_1" title="查询条件" class="easyui-panel queryform" style="width: 100%;">
+		<form id="query_authorization_form" style="width: 99%;padding-left:10%;" class="easyui-form"
+			method="post" data-options="novalidate:true">
+			<div class="col-sm-9">
+                <div class="qcol col-sm-6">
+                  <input class="easyui-textbox" name="accountFrom" style="width:300px;height:30px;"
+				  data-options="label:'授权发起账户:',labelWidth:'110px'">
+                </div>
+                <div class="qcol col-sm-6">
+                  <input class="easyui-textbox" name="accountTo" style="width:300px;height:30px;"
+					data-options="label:'授权接收账户:',labelWidth:'110px'">
+                </div>
+            </div>
+			<div class="col-sm-9">
+                <div class="qcol col-sm-6">
+                  <input class="easyui-textbox" name="authCode" style="width:300px;height:30px;"
+						   data-options="label:'授权追溯码:',labelWidth:'110px'">
+                </div>
+                <div class="qcol col-sm-6">
+                   <input class="easyui-textbox" name="tradeHash" style="width:300px;height:30px;"
+					data-options="label:'授权交易HASH:',labelWidth:'110px'">
+                </div>
+            </div>
+			<div class="col-sm-9">
+                <div class="qcol col-sm-6">
+                  <input class="easyui-datebox" name="startTime" style="width:300px;height:30px;"
+						   data-options="label:'开始日期:',labelWidth:'110px'">
+                </div>
+                <div class="qcol col-sm-6">
+                  <input class="easyui-datebox" name="endTime" style="width:300px;height:30px;"
+						   data-options="label:'结束日期:',labelWidth:'110px'">
+                </div>
+            </div>
+			<div class="col-sm-9">
+                <div class="qcol col-sm-6">
+                  <select class="easyui-combobox" name="tradeType" style="width:300px;height:30px;"
+							data-options="prompt:'授权交易类型:',panelHeight:'auto',
+							labelWidth:'110px',label:'授权交易类型:'" >
+					  	<option value="" selected>所有类型</option>
+						<option value="0">用户授权</option>
+						<option value="1">机构授权</option>
+						<option value="2">银联授权</option>
+					</select>
+                </div>
+                <div class=" col-sm-6">
+		             <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+	                       data-options="iconCls:'icon-search',iconAlign:'right'"
+	                       style="width:80px;">查询</a>
+		             </div>
+		             <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+	                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+	                       style="width:80px;">重置</a>
+		             </div>
+                </div>
+            </div>
+		</form>
+	</div>
+	<table id="query_order_product_content" style="width: 100%;">
+		<thead>
+			<tr>
+				<th data-options="field:'tradeHash'" width="500">交易HASH</th>
+				<th data-options="field:'from'"  width="180">授权方</th>
+				<th data-options="field:'to'"  width="180">接收方</th>
+				<th data-options="field:'tradeType',formatter: function(value){if(value=='0')return '用户授权';if(value=='1')return '机构授权';if(value=='2')return '银联授权';return '用户授权';}"  width="80">授权类型</th>
+				<th data-options="field:'createAtTime'" width="200">授权时间</th>
+				<th data-options="field:'authCode'" width="300">追溯码</th>
+				<th data-options="field:'tradeStatus',formatter: function(value){if(value=='0')return '失败';if(value=='1')return '成功';return '处理中';}"width="80">授权状态</th>
+				<th data-options="field:'description'"width="100">授权描述</th>
+				<th data-options="field:'detailInfo',hidden:true"width="180"></th>
+				<th data-options="field:'inputInfo',hidden:true"width="180"></th>
+				<th data-options="field:'tradePublicKey',hidden:true"width="180"></th>
+			</tr>
+		</thead>
+	</table>
+	<div style="position:absolute;top:-10000px;left:-10000px;">
+		<form id="query_auth_detail_form" class="easyui-form queryform" method="post"
+			  data-options="novalidate:true">
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" id="tradeHash" name="tradeHash" style="width:480px;height:30px;"
+					   data-options="labelAlign:'right',readonly:true,labelWidth:'120px',
+	            label:'交易序号:'" />
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" id="from" name="from" style="width:480px;height:30px;"
+					   data-options="labelAlign:'right',readonly:true,labelWidth:'120px',
+	            label:'授权方:'" />
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" id="to" name="to" style="width:480px;height:30px;"
+					   data-options="labelAlign:'right',prompt:'接收方',labelWidth:'120px',
+	         label:'接收方:',readonly:true" />
+			</div>
+			<div class="qcol col-sm-12">
+				<select class="easyui-combobox" name="tradeType" style="width:480px;height:30px;"
+						data-options="labelAlign:'right',prompt:'授权类型',labelWidth:'120px',
+	               label:'授权类型:',readonly:true,panelHeight:'auto'" >
+					<option value="0">用户授权</option>
+					<option value="1">机构授权</option>
+					<option value="2">银联授权</option>
+				</select>
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" id="createAtTime" name="createAtTime" style="width:480px;height:30px;"
+					   data-options="labelAlign:'right',prompt:'授权时间',labelWidth:'120px',
+	         label:'授权时间:',readonly:true" />
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" id="authCode" name="authCode" style="width:480px;height:30px;"
+					   data-options="labelAlign:'right',prompt:'追溯码',labelWidth:'120px',
+	         label:'追溯码:',readonly:true" />
+			</div>
+			<div class="qcol col-sm-12">
+				<select class="easyui-combobox" name="tradeType" style="width:480px;height:30px;"
+						data-options="labelAlign:'right',prompt:'授权状态',labelWidth:'120px',
+	               label:'授权类型:',readonly:true,panelHeight:'auto'" >
+					<option value="0">失败</option>
+					<option value="1">成功</option>
+				</select>
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" id="description" name="description" style="width:480px;height:30px;"
+					   data-options="prompt:'授权描述',labelAlign:'right',readonly:true,
+	            labelWidth:'120px',label:'授权描述:'" />
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" id="inputInfo" name="inputInfo" style="width:480px;height:80px;"
+					   data-options="labelAlign:'right',prompt:'输入参数',labelWidth:'120px',label:'输入参数:',
+					   multiline:true,readonly:true" />
+			</div>
+			<div class="qcol col-sm-12 trade_encode_key newAccount">
+				<input class="easyui-textbox" id="tradeEncodeKey" name="tradeEncodeKey" style="width:480px;height:60px;"
+					   data-options="labelAlign:'right',prompt:'解密参数',labelWidth:'120px',label:'解密参数:',
+					   multiline:true,readonly:true" />
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="/js/trade/query_authorization.js"></script>
+<script type="text/javascript">
+    $.parser.parse(".easyuitag");
+</script>

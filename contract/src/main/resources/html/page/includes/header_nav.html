@@ -1,0 +1,38 @@
+<div class="navbar-container ace-save-state" id="navbar-container">
+
+	<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+		<span class="sr-only">切换侧边栏</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	</button>
+	<div class="navbar-header pull-right" style="display:none;">
+		<ul class="nav ace-nav">
+			<li class="light-blue dropdown-modal">
+				<a data-toggle="dropdown" href="#" class="dropdown-toggle"> 
+					<span hpb_text="exchange_lang">切换语言</span> 
+					<i class="ace-icon fa fa-caret-down"></i>
+				</a>
+				<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+					<li>
+						<a onclick="javascript:setPageLang('en',this);">English</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a onclick="javascript:setPageLang('zh-CN',this);">中文</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="navbar-header pull-left">
+		<a href="javascript:gotoHomePage();" class="navbar-brand"> <small> 
+			<i class="fa"></i>
+			<span hpb_text="block_chain"></span>
+		</small>
+		</a>
+	</div>
+	<div class="navbar-buttons navbar-header pull-right" role="navigation">
+		<ul class="nav ace-nav" id="navbar-container-navigation"></ul>
+	</div>
+</div>

@@ -1,0 +1,110 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="query_permission_div_1" title="查询条件" class="easyui-panel queryform" style="width: 100%;">
+		<form id="permission_query_user_form" style="width: 99%;padding-left:10%"
+			class="easyui-form" method="post" data-options="novalidate:true">
+				 <div class="col-sm-9">
+				    <div class="qcol col-sm-6">
+						<input class="easyui-textbox" id="username" name="username" style="width: 300px; height: 30px;"
+							data-options="label:'用户名称:'">
+					</div>
+					<div class="qcol col-sm-6">
+						<input class="easyui-textbox" name="mobile" style="width: 300px; height: 30px;"
+							data-options="label:'电话:'">
+					</div>
+				 </div>
+	             <div class="col-sm-9">
+	             <div class="qcol col-sm-6">
+	             <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+	                       data-options="iconCls:'icon-search',iconAlign:'right'"
+	                       style="width:80px;height: 30px;">查询</a>
+		             </div>
+		             <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+	                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+	                       style="width:80px;height: 30px;">重置</a>
+		             </div>
+	             </div>
+	             <div class="qcol col-sm-6">
+	             </div>
+		             
+	             </div>
+		</form>
+	</div>
+	<div title="数据列表" class="easyui-panel " style="width: 100%;">
+		 <table id="permission_query_list_datagrid">
+	          <thead>
+	          <tr>
+	             <th data-options="field:'username',width:'150'">用户名称</th>
+	              <th data-options="field:'roleName',width:'150'">角色名称</th>
+	              <th data-options="field:'mobile',width:'150'">手机号</th>
+	              <th data-options="field:'email',width:'150'" >邮箱</th>
+	              <th data-options="field:'status',width:'80',formatter:function(value){
+            	   return {'0':'禁用','1':'启用'}[value];}," >账户状态</th>
+	              <th data-options="field:'isMain',width:'80',formatter:function(value){
+            	   return {'0':'否','1':'是'}[value];}">是否主账户</th>
+	              <th data-options="field:'createAtTime',width:'180'">创建时间</th>
+	          </tr>
+	          </thead>
+	      </table>
+	</div>
+	<!--<div id="tb">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:add()">添加用户</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="javascript:edit()">编辑用户</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:saveMain()">设置为主账户</a>
+	 </div>-->
+	<div id="permission_create_user_dialog" style="position: absolute;top:-10000px;left:-10000px;">
+		<form id="permission_add_user_form" class="easyui-form queryform" method="post"
+		     data-options="novalidate:true">
+			<input name="ownerId" type="hidden"/>
+			<input name="accountId" type="hidden"/>
+			<div class="qcol col-sm-12">
+	            <input class="easyui-textbox" name="username" style="width:350px;height:30px;"
+	            data-options="labelAlign:'right',prompt:'请输入用户名称',labelWidth:'100px',
+	            label:'用户名称:',required:true,validType:'length[1,1024]'" />
+	        </div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-passwordbox" id="password" name="password" style="width:350px;height:30px;"
+					   data-options="labelAlign:'right',prompt:'请输入用户密码，长度在8-18位',labelWidth:'100px',
+	         label:'用户密码:',required:true,validType:'length[8,18]'" />
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" name="mobile" style="width:350px; height: 30px;"
+					data-options="labelAlign:'right',prompt:'请输入联系电话',labelWidth:'100px',label:'联系电话:',
+				    required:true,validType:'mobile,phone'" />
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" name="email" style="width:350px; height: 30px;"
+					data-options="labelAlign:'right',prompt:'请输入邮箱地址',labelWidth:'100px',label:'邮箱地址:',
+				    required:true,validType:'email'" />
+			</div>
+			<div class="qcol col-sm-12">
+                	<select id="roleTreeUpdate" class="easyui-combotree" name="roleId"  style="width:350px;height:30px;"
+                	data-options="labelAlign:'right',labelWidth:'100px',panelHeight:'auto',label:'选择角色:'" >
+					</select>
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" name="publicKey" style="width:350px; height:60px;"
+					data-options="labelAlign:'right',prompt:'请输入公钥信息',labelWidth:'100px',label:'机构公钥:',
+				    multiline:true,required:true" />
+			</div>
+			<!--<div class="col-sm-12">
+	             <div class="qcol col-sm-3">&nbsp;</div>
+	             <div class="qcol col-sm-3">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="add();"
+                       data-options="iconCls:'icon-search',iconAlign:'right'"
+                       style="width:80px;">确定</a>
+	             </div>
+	             <div class="qcol col-sm-4">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearDialogForm()"
+                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+                       style="width:80px;">重置</a>
+	             </div>
+		    </div>-->
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="/js/permission/permission_edit_user.js"></script>
+<script type="text/javascript">
+	$.parser.parse(".easyuitag");
+</script>

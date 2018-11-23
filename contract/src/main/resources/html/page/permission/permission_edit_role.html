@@ -1,0 +1,76 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="query_query_role_div_1" title="查询条件"
+		class="easyui-panel queryform" style="width: 100%;">
+		<form id="permission_query_role_form"
+			style="width: 99%;padding-left:10%" class="easyui-form"
+			method="post" data-options="novalidate:true">
+			 <div class="col-sm-9">
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="roleName" style="width: 80%; height: 30px;"
+						data-options="label:'角色名称:'">
+				</div>
+				<div class="col-sm-6">
+				<div class="qcol col-sm-4">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+                       data-options="iconCls:'icon-search',iconAlign:'right'"
+                       style="width:80px;">查询</a>
+	             </div>
+	             <div class="qcol col-sm-4">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+                       style="width:80px;">重置</a>
+	             </div>
+			</div>
+			 </div>
+			 
+		</form>
+	</div>
+	<div title="数据列表" class="easyui-panel " style="width: 100%;">
+	 	<table id="permission_role_list_datagrid" style="width: 100%;">
+	          <thead>
+		          <tr>
+		              <th data-options="field:'id',width:'100'">角色编号</th>
+		              <th data-options="field:'roleName',width:'100'">角色名称</th>
+		              <th data-options="field:'roleDesc',width:'100'">角色描述信息</th>
+		              <th data-options="field:'roleState',formatter:function(val){
+            			  if(val=='1'){return '正常';}return '禁用';},width:'100'" >角色状态</th>
+		          </tr>
+	          </thead>
+	      </table>
+	</div>
+	<div id="permission_update_role_dialog" style="position:absolute;top:-10000px;left:-10000px;">
+		<form id="permission_update_role_form" class="easyui-form queryform"
+			method="post" data-options="novalidate:true">
+			<input name="id" type="hidden" />
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" name="roleName"
+					style="width: 350px; height: 30px;"
+					data-options="labelAlign:'right',prompt:'请输入角色名称',labelWidth:'100px',
+			            label:'角色名称',required:true,validType:'length[1,1024]'" />
+			</div>
+			<div class="qcol col-sm-12">
+				<input class="easyui-textbox" name="roleDesc"
+					style="width: 350px; height: 30px;"
+					data-options="labelAlign:'right',prompt:'请输入角色描述',labelWidth:'100px',
+	                           label:'角色描述:'" />
+			</div>
+			<div class="qcol col-sm-12">
+				<label class="textbox-label textbox-label-before"
+					style="text-align: right; width: 100px; height: 30px; line-height: 30px;">
+					角色状态:</label> 
+					<input type="radio" name="roleState" value="0">禁用</input>
+					<input type="radio" name="roleState" value="1">正常</input>
+			</div>
+			<div class="qcol col-sm-12">
+				<input id="resourceTreeUpdate" name="resourceTreeUpdate" class="easyui-combotree"
+				 style="width: 350px;"
+					data-options="multiple:true,panelHeight:'auto',panelMaxHeight:200,
+	                   labelAlign:'right',labelWidth:'100px',label:'选择菜单:'"/>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="/js/permission/permission_edit_role.js"></script>
+<script type="text/javascript">
+    $.parser.parse(".easyuitag");
+</script>

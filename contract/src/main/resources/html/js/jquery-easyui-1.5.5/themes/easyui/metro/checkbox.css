@@ -1,0 +1,36 @@
+.easyui .checkbox {
+	position: relative;
+	border: 2px solid #99cdff;
+	-moz-border-radius: 0px 0px 0px 0px;
+	-webkit-border-radius: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.easyui .checkbox-checked {
+	border: 0;
+	background: #99cdff;
+}
+
+.easyui .checkbox-inner {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.easyui .checkbox path {
+	stroke-width: 2px;
+}
+
+.easyui .checkbox-disabled {
+	opacity: 0.6;
+}
+
+.easyui .checkbox-value {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	left: -999px;
+}

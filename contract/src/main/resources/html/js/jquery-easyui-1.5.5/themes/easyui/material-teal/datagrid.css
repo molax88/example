@@ -1,0 +1,322 @@
+.easyui .datagrid .panel-body {
+	overflow: hidden;
+	position: relative;
+}
+
+.easyui .datagrid-view {
+	position: relative;
+	overflow: hidden;
+}
+
+.easyui .datagrid-view1, .easyui  .datagrid-view2 {
+	position: absolute;
+	overflow: hidden;
+	top: 0;
+}
+
+.easyui .datagrid-view1 {
+	left: 0;
+}
+
+.easyui .datagrid-view2 {
+	right: 0;
+}
+
+.easyui .datagrid-mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.3;
+	filter: alpha(opacity = 30);
+	display: none;
+}
+
+.easyui .datagrid-mask-msg {
+	position: absolute;
+	top: 50%;
+	margin-top: -20px;
+	padding: 10px 5px 10px 30px;
+	width: auto;
+	height: 16px;
+	border-width: 2px;
+	border-style: solid;
+	display: none;
+}
+
+.easyui .datagrid-empty {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+}
+
+.easyui .datagrid-sort-icon {
+	padding: 0;
+	display: none;
+}
+
+.easyui .datagrid-toolbar {
+	height: auto;
+	padding: 1px 2px;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+}
+
+.easyui .datagrid-btn-separator {
+	float: left;
+	height: 24px;
+	border-left: 1px solid #dfdfdf;
+	border-right: 1px solid #fff;
+	margin: 2px 1px;
+}
+
+.easyui .datagrid .datagrid-pager {
+	display: block;
+	margin: 0;
+	border-width: 1px 0 0 0;
+	border-style: solid;
+}
+
+.easyui .datagrid .datagrid-pager-top {
+	border-width: 0 0 1px 0;
+}
+
+.easyui .datagrid-header {
+	overflow: hidden;
+	cursor: default;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+}
+
+.easyui .datagrid-header-inner {
+	float: left;
+	width: 10000px;
+}
+
+.easyui .datagrid-header-row, .easyui  .datagrid-row {
+	height: 32px;
+}
+
+.easyui .datagrid-header td, .easyui  .datagrid-body td, .easyui  .datagrid-footer td {
+	border-width: 0 1px 1px 0;
+	border-style: dotted;
+	margin: 0;
+	padding: 0;
+}
+
+.easyui .datagrid-cell, .easyui  .datagrid-cell-group, .easyui  .datagrid-header-rownumber, .easyui 
+	.datagrid-cell-rownumber {
+	margin: 0;
+	padding: 0 4px;
+	white-space: nowrap;
+	word-wrap: normal;
+	overflow: hidden;
+	height: 18px;
+	line-height: 18px;
+	font-size: 14px;
+}
+
+.easyui .datagrid-header .datagrid-cell {
+	height: auto;
+}
+
+.easyui .datagrid-header .datagrid-cell span {
+	font-size: 14px;
+}
+
+.easyui .datagrid-cell-group {
+	text-align: center;
+	text-overflow: ellipsis;
+}
+
+.easyui .datagrid-header-rownumber, .easyui  .datagrid-cell-rownumber {
+	width: 30px;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+.easyui .datagrid-body {
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+	zoom: 1;
+}
+
+.easyui .datagrid-view1 .datagrid-body-inner {
+	padding-bottom: 20px;
+}
+
+.easyui .datagrid-view1 .datagrid-body {
+	overflow: hidden;
+}
+
+.easyui .datagrid-footer {
+	overflow: hidden;
+}
+
+.easyui .datagrid-footer-inner {
+	border-width: 1px 0 0 0;
+	border-style: solid;
+	width: 10000px;
+	float: left;
+}
+
+.easyui .datagrid-row-editing .datagrid-cell {
+	height: auto;
+}
+
+.easyui .datagrid-header-check, .easyui  .datagrid-cell-check {
+	padding: 0;
+	width: 27px;
+	height: 18px;
+	font-size: 1px;
+	text-align: center;
+	overflow: hidden;
+}
+
+.easyui .datagrid-header-check input, .easyui  .datagrid-cell-check input {
+	margin: 0;
+	padding: 0;
+	width: 15px;
+	height: 18px;
+}
+
+.easyui .datagrid-resize-proxy {
+	position: absolute;
+	width: 1px;
+	height: 10000px;
+	top: 0;
+	cursor: e-resize;
+	display: none;
+}
+
+.easyui .datagrid-body .datagrid-editable {
+	margin: 0;
+	padding: 0;
+}
+
+.easyui .datagrid-body .datagrid-editable table {
+	width: 100%;
+	height: 100%;
+}
+
+.easyui .datagrid-body .datagrid-editable td {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.easyui .datagrid-view .datagrid-editable-input {
+	margin: 0;
+	padding: 2px 4px;
+	border: 1px solid #dfdfdf;
+	font-size: 14px;
+	outline-style: none;
+	-moz-border-radius: 0 0 0 0;
+	-webkit-border-radius: 0 0 0 0;
+	border-radius: 0 0 0 0;
+}
+
+.easyui .datagrid-view .validatebox-invalid {
+	border-color: #ffa8a8;
+}
+
+.easyui .datagrid-sort .datagrid-sort-icon {
+	display: inline;
+	padding: 0 13px 0 0;
+	background: url('images/datagrid_icons.png') no-repeat -64px center;
+}
+
+.easyui .datagrid-sort-desc .datagrid-sort-icon {
+	display: inline;
+	padding: 0 13px 0 0;
+	background: url('images/datagrid_icons.png') no-repeat -16px center;
+}
+
+.easyui .datagrid-sort-asc .datagrid-sort-icon {
+	display: inline;
+	padding: 0 13px 0 0;
+	background: url('images/datagrid_icons.png') no-repeat 0px center;
+}
+
+.easyui .datagrid-row-collapse {
+	background: url('images/datagrid_icons.png') no-repeat -48px center;
+}
+
+.easyui .datagrid-row-expand {
+	background: url('images/datagrid_icons.png') no-repeat -32px center;
+}
+
+.easyui .datagrid-mask-msg {
+	background: #ffffff url('images/loading.gif') no-repeat scroll 5px
+		center;
+}
+
+.easyui .datagrid-header, .easyui  .datagrid-td-rownumber {
+	background-color: #fff;
+}
+
+.easyui .datagrid-cell-rownumber {
+	color: #404040;
+}
+
+.easyui .datagrid-resize-proxy {
+	background: #ccc;
+}
+
+.easyui .datagrid-mask {
+	background: #eee;
+}
+
+.easyui .datagrid-mask-msg {
+	border-color: #dfdfdf;
+}
+
+.easyui .datagrid-toolbar, .easyui  .datagrid-pager {
+	background: #fafafa;
+}
+
+.easyui .datagrid-header, .easyui  .datagrid-toolbar, .easyui  .datagrid-pager, .easyui 
+	.datagrid-footer-inner {
+	border-color: #dfdfdf;
+}
+
+.easyui .datagrid-header td, .easyui  .datagrid-body td, .easyui  .datagrid-footer td {
+	border-color: #dfdfdf;
+}
+
+.easyui .datagrid-htable, .easyui  .datagrid-btable, .easyui  .datagrid-ftable {
+	color: #404040;
+	border-collapse: separate;
+}
+
+.easyui .datagrid-row-alt {
+	background: #fafafa;
+}
+
+.easyui .datagrid-row-over, .easyui  .datagrid-header td.datagrid-header-over {
+	background: #eee;
+	color: #404040;
+	cursor: default;
+}
+
+.easyui .datagrid-row-selected {
+	background: #eee;
+	color: #39c;
+}
+
+.easyui .datagrid-row-editing .textbox, .easyui  .datagrid-row-editing .textbox-text {
+	-moz-border-radius: 0 0 0 0;
+	-webkit-border-radius: 0 0 0 0;
+	border-radius: 0 0 0 0;
+}
+
+.easyui .datagrid-header .datagrid-filter-row td.datagrid-header-over {
+	background: inherit;
+}

@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "hpb.price.url",
+      "type": "java.lang.String",
+      "description": "hpb价格请求url"
+    }
+  ]
+}

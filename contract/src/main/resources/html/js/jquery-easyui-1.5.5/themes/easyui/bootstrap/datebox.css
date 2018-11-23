@@ -1,0 +1,43 @@
+.easyui .datebox-calendar-inner {
+	height: 250px;
+}
+
+.easyui .datebox-button {
+	padding: 4px 0;
+	text-align: center;
+}
+
+.easyui .datebox-button a {
+	line-height: 22px;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}
+
+.easyui .datebox-button a:hover {
+	opacity: 1.0;
+	filter: alpha(opacity = 100);
+}
+
+.easyui .datebox-current, .easyui  .datebox-close {
+	float: left;
+}
+
+.easyui .datebox-close {
+	float: right;
+}
+
+.easyui .datebox .combo-arrow {
+	background-image: url('images/datebox_arrow.png');
+	background-position: center center;
+}
+
+.easyui .datebox-button {
+	background-color: #F5F5F5;
+}
+
+.easyui .datebox-button a {
+	color: #444;
+}

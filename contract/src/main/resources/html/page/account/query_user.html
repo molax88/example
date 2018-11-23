@@ -1,0 +1,148 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="query_user_div_1" title="查询条件" class="easyui-panel queryform"
+	    style="width: 100%;">
+        <form id="query_user_form" style="width:99%;padding-left:10%" class="easyui-form" method="post"
+              data-options="novalidate:true">
+            <div class="col-sm-9">
+                <div class="qcol col-sm-6">
+                    <input class="easyui-textbox" name="userName" style="width:300px;height:30px;"
+                           data-options="label:'用户姓名:'">
+                </div>
+                <div class="qcol col-sm-6">
+                    <input class="easyui-textbox" name="idCard" style="width:300px;height:30px;"
+                           data-options="label:'身份证号:'">
+                </div>
+                
+            </div>
+            <div class="col-sm-9">
+            <div class="qcol col-sm-6">
+                    <input class="easyui-textbox" name="cellphone" style="width:300px;height:30px;"
+                           data-options="label:'用户手机号:'">
+                </div>
+                 <div class="qcol col-sm-6">
+                    <input class="easyui-textbox" name="email" style="width:300px;height:30px;"
+                           data-options="label:'用户邮箱:'">
+                </div>
+            </div>
+            <div class="col-sm-9">     
+            <div class="qcol col-sm-6">
+                    <div class="qcol col-sm-4">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+                       data-options="iconCls:'icon-search',iconAlign:'right'"
+                       style="width:80px;">查询</a>
+                </div>
+                <div class="qcol col-sm-4">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+                       style="width:80px;">重置</a>
+                </div>
+                </div>      
+               
+                <div class="qcol col-sm-6">
+                   
+                </div>
+            </div>
+        </form>
+	</div>
+    <table style="width: 100%;" id="query_user_datalist" title="用户信息列表">
+    	<thead data-options="frozen:true">
+			<tr>
+	            <th data-options="field:'userName',width:80">用户名</th>
+	            <th data-options="field:'realName',width:80">姓名</th>
+			</tr>
+		</thead>
+        <thead>
+        <tr>
+            <th data-options="field:'sexual',formatter:function(value){
+            	return {'0':'男','1':'女'}[value];},width:40">性别</th>
+            <th data-options="field:'cellphone',width:80">联系号码</th>
+            <th data-options="field:'qq',width:70">QQ</th>
+            <th data-options="field:'wechat',width:80">微信</th>
+            <th data-options="field:'email',width:120">邮箱</th>
+            <th data-options="field:'idCard',width:120">身份证</th>
+            <th data-options="field:'nickName',width:80">昵称</th>
+            <th data-options="field:'address',width:180">住址</th>
+            <th data-options="field:'state',formatter:function(value){
+            	return {'0':'启用','1':'禁用'}[value];},width:60">账户状态</th>
+        </tr>
+        </thead>
+    </table>
+    <div style="position:absolute;top:-10000px;left:-10000px;">
+        <form id="query_user_detail_form" class="easyui-form queryform" method="post"
+              data-options="novalidate:true">
+            <div class="qcol col-sm-12 newAccount">
+                <input class="easyui-textbox" id="userId" name="userId" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'用户id',labelWidth:'120px',label:'用户id:',
+                       readonly:true"/>
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="userName" name="userName" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'用户登录名',labelWidth:'120px',label:'用户名:',
+                       "/><span style="color:red">*</span>
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="realName" name="realName" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'真实姓名',labelWidth:'120px',label:'姓名:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <select id="roleTree" class="easyui-combotree" name="roleId"  style="width:480px;height:30px;"
+                        data-options="labelAlign:'right',labelWidth:'120px',panelHeight:'auto',label:'选择角色:'" >
+                </select>
+            </div>
+            <div class="qcol col-sm-12">
+                <label class="textbox-label textbox-label-before"
+                       style="text-align: right; width: 120px; height: 30px; line-height: 30px;">
+                    性别:</label>
+                <input type="radio" name="sexual" value="0">男</input>
+                <input type="radio" name="sexual" value="1" style="margin-left: 20px">女</input>
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="cellphone" name="cellphone" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'联系电话',labelWidth:'120px',label:'联系电话:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="qq" name="qq" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'QQ号',labelWidth:'120px',label:'QQ:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="wechat" name="wechat" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'微信号',labelWidth:'120px',label:'微信:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="email" name="email" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'用户邮箱',labelWidth:'120px',label:'用户邮箱:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-passwordbox" id="passwd" name="passwd" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'登录密码',labelWidth:'120px',label:'登录密码:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="idCard" name="idCard" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'身份证号',labelWidth:'120px',label:'身份证号:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="nickName" name="nickName" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'昵称',labelWidth:'120px',label:'昵称:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="address" name="address" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'现住址',labelWidth:'120px',label:'住址:'" />
+            </div>
+            <div class="qcol col-sm-12">
+                <input class="easyui-textbox" id="remark" name="remark" style="width:480px;height:30px;"
+                       data-options="labelAlign:'right',prompt:'其他信息',labelWidth:'120px',label:'备注:'" />
+            </div>
+            <div class="qcol col-sm-12 newAccount">
+                <label class="textbox-label textbox-label-before"
+                       style="text-align: right; width: 120px; height: 30px; line-height: 30px;">
+                    账户状态:</label>
+                <input type="radio" name="state" value="0">启用</input>
+                <input type="radio" name="state" value="1" style="margin-left: 20px">禁用</input>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="/js/account/query_user.js"></script>
+<script type="text/javascript">
+	$.parser.parse(".easyuitag");
+</script>

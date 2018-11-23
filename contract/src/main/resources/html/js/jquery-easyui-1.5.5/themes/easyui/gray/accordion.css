@@ -1,0 +1,115 @@
+.easyui .accordion {
+	overflow: hidden;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.easyui .accordion .accordion-header {
+	border-width: 0 0 1px;
+	cursor: pointer;
+}
+
+.easyui .accordion .accordion-body {
+	border-width: 0 0 1px;
+}
+
+.easyui .accordion-noborder {
+	border-width: 0;
+}
+
+.easyui .accordion-noborder .accordion-header {
+	border-width: 0 0 1px;
+}
+
+.easyui .accordion-noborder .accordion-body {
+	border-width: 0 0 1px;
+}
+
+.easyui .accordion-collapse {
+	background: url('images/accordion_arrows.png') no-repeat 0 0;
+}
+
+.easyui .accordion-expand {
+	background: url('images/accordion_arrows.png') no-repeat -16px 0;
+}
+
+.easyui .accordion {
+	background: #ffffff;
+	border-color: #D3D3D3;
+}
+
+.easyui .accordion .accordion-header {
+	background: #f3f3f3;
+	filter: none;
+}
+
+.easyui .accordion .accordion-header-selected {
+	background: #0092DC;
+}
+
+.easyui .accordion .accordion-header-selected .panel-title {
+	color: #fff;
+}
+
+.easyui .accordion .panel-last>.accordion-header {
+	border-bottom-color: #f3f3f3;
+}
+
+.easyui .accordion .panel-last>.accordion-body {
+	border-bottom-color: #ffffff;
+}
+
+.easyui .accordion .panel-last>.accordion-header-selected, .easyui  .accordion .panel-last>.accordion-header-border
+	{
+	border-bottom-color: #D3D3D3;
+}
+
+.easyui .accordion>.panel-hleft {
+	float: left;
+}
+
+.easyui .accordion>.panel-hleft>.panel-header {
+	border-width: 0 1px 0 0;
+}
+
+.easyui .accordion>.panel-hleft>.panel-body {
+	border-width: 0 1px 0 0;
+}
+
+.easyui .accordion>.panel-hleft.panel-last>.accordion-header {
+	border-right-color: #f3f3f3;
+}
+
+.easyui .accordion>.panel-hleft.panel-last>.accordion-body {
+	border-right-color: #ffffff;
+}
+
+.easyui .accordion>.panel-hleft.panel-last>.accordion-header-selected, .easyui 
+	.accordion>.panel-hleft.panel-last>.accordion-header-border {
+	border-right-color: #D3D3D3;
+}
+
+.easyui .accordion>.panel-hright {
+	float: right;
+}
+
+.easyui .accordion>.panel-hright>.panel-header {
+	border-width: 0 0 0 1px;
+}
+
+.easyui .accordion>.panel-hright>.panel-body {
+	border-width: 0 0 0 1px;
+}
+
+.easyui .accordion>.panel-hright.panel-last>.accordion-header {
+	border-left-color: #f3f3f3;
+}
+
+.easyui .accordion>.panel-hright.panel-last>.accordion-body {
+	border-left-color: #ffffff;
+}
+
+.easyui .accordion>.panel-hright.panel-last>.accordion-header-selected, .easyui 
+	.accordion>.panel-hright.panel-last>.accordion-header-border {
+	border-left-color: #D3D3D3;
+}

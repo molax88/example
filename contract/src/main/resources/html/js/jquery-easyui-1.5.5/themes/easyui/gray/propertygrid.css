@@ -1,0 +1,32 @@
+.easyui .propertygrid .datagrid-view1 .datagrid-body td {
+	padding-bottom: 1px;
+	border-width: 0 1px 0 0;
+}
+
+.easyui .propertygrid .datagrid-group {
+	overflow: hidden;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+}
+
+.easyui .propertygrid .datagrid-group span {
+	font-weight: bold;
+}
+
+.easyui .propertygrid .datagrid-view1 .datagrid-body td {
+	border-color: #ddd;
+}
+
+.easyui .propertygrid .datagrid-view1 .datagrid-group {
+	border-color: #f3f3f3;
+}
+
+.easyui .propertygrid .datagrid-view2 .datagrid-group {
+	border-color: #ddd;
+}
+
+.easyui .propertygrid .datagrid-group, .easyui  .propertygrid .datagrid-view1 .datagrid-body, .easyui 
+	.propertygrid .datagrid-view1 .datagrid-row-over, .propertygrid .datagrid-view1 .datagrid-row-selected
+	{
+	background: #f3f3f3;
+}

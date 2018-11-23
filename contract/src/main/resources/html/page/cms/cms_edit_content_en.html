@@ -1,0 +1,263 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="cms_category_div_1" title="查询条件"
+		class="easyui-panel queryform" style="width: 100%;">
+		<form id="cms_article_query_form"
+			style="width: 99%;padding-left: 8%;" class="easyui-form"
+			method="post" data-options="novalidate:true">
+			<div class="col-sm-12 qry_tp0">
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="title" style="width:300px; height: 30px;"
+						data-options="label:'标题:',labelWidth:'80px'">
+				</div>
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="author" style="width:300px; height: 30px;"
+						data-options="label:'作者:',labelWidth:'80px'">
+				</div>
+				
+				<div class="qcol col-sm-6">
+					<select class="easyui-combobox" name="languageType" data-options="label:'语言:',width:'200px',
+						editable:false,panelHeight:'auto'">
+						<option value="1">英文</option>
+						<!-- <option value="">全部</option>
+						<option value="0">中文</option>
+						 -->
+					</select>
+				</div>
+				<div class="qcol col-sm-6">
+					<select class="easyui-combobox" name="status" data-options="label:'状态:',width:'200px',
+						editable:false,panelHeight:'auto'">
+						<option value="">全部</option>
+						<option value="2">显示</option>
+						<option value="0">不显示</option>
+						<!-- <option value="1">未审核</option> -->
+					</select>
+				</div>
+				<div class="qcol col-sm-12">
+					<select class="easyui-combobox" id="qModuleKey" name="moduleKey" data-options="label:'模块:',width:'200px',
+						editable:false,panelHeight:'auto'">
+						<option value="">全部</option>
+					</select>
+				</div>
+				
+				<div class="col-sm-9 qry_btn0">
+					<div class="qcol col-sm-4">
+						 <div class="qcol col-sm-6">
+		                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+		                       data-options="iconCls:'icon-search',iconAlign:'right'"
+		                       style="width:80px;">查询</a>
+			             </div>
+			              <div class="qcol col-sm-6">
+		                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+		                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+		                       style="width:80px;margin-left: 40px;">重置</a>
+			             </div>
+					</div>
+				</div>
+			</div>
+		</form>
+		
+	</div>
+	
+	<div>
+	
+	<div title="内容列表" class="easyui-panel " style="width: 100%;">
+		<table id="cms_article_list_datagrid" style="width: 100%;">
+	          <thead>
+	          <tr>
+	              <th data-options="field:'articleId',width:'40',sortable:true">编号</th>
+	              <th data-options="field:'moduleKey',width:'40'">模块</th>
+	              <th data-options="field:'title',width:'100'">标题</th>
+	              <th data-options="field:'languageType',formatter:function(val){
+            			  if(val=='0'){return '中文';}return '英文';},width:'50'" >语言</th>
+	              <th data-options="field:'author',width:'60'">作者</th>
+	              <th data-options="field:'count',width:'50',formatter:function(val){
+            			  if(val){return val.viewNum;}return '0';}">阅读数</th>
+	              <th data-options="field:'status',formatter:function(val){
+            			  if(val=='0'){return '不显示';} if(val=='1'){return '待审核';}return '显示';},width:'50'" >状态</th>
+	              <th data-options="field:'displayOrder',width:'50'">排序</th>
+	               <th data-options="field:'publishTime',width:'100'" >发布时间</th>
+	              <th data-options="field:'createAtTime',width:'100',sortable:true">创建时间</th>
+	          </tr>
+	          </thead>
+	      </table>
+	</div>
+	<div id="cms_article__dialog"  style="position: absolute;top:-10000px;left:-10000px;">
+		<form id="cms_article_edit_form" class="form-horizontal" role="form" enctype="multipart/form-data" 
+		method="post" data-options="novalidate:false" >
+				<div class="qcol col-sm-12">
+					<input  name="articleId" type="hidden" />
+		            <input name="images" id="images" class="easyui-validatebox" type="hidden">
+                </div>
+				<div class="col-sm-12">
+					<div class="col-sm-6">
+						<div class="form-group" style="margin: 10px 0;">
+							<label class="col-sm-2 control-label no-padding-right" for="form-field-1" style="margin-left:-2px;"> 文章标题: </label>
+							<div class="col-sm-10">
+								<input type="text" id="title" name="title" style="height:30px;margin-left:7px;" placeholder="输入文章标题" class="col-xs-10 col-sm-12">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3"></div>
+                </div>
+				<div class="col-sm-12">
+					<div class="col-sm-4">
+					 	<div class="col-sm-12" style="margin: 5px 0;">
+							 <select id="moduleId" class="easyui-combobox" name="moduleId" style="width:200px;height:30px;" data-options="label:'所属模块:',labelWidth:'100px',
+									labelAlign:'right',editable:false,panelHeight:'auto',prompt:'请选择模块',required:true">
+							</select>
+							<span style="color:red">*</span>
+		                </div>
+						<div class="col-sm-12" style="margin: 5px 0;">
+		                    <input class="easyui-textbox" id="author" name="author" style="width:200px;height:30px;"
+		                           data-options="labelAlign:'right',prompt:'请输入编辑名称',labelWidth:'100px',
+								   label:'编辑名称:',validType:'length[1,100]',required:true" />
+		                </div>
+		             </div>
+		             <div class="col-sm-4">
+						<div class="col-sm-12" style="margin: 5px 0;">
+		                    <input class="easyui-datetimebox" id="publishTime" name="publishTime" style="width:200px;height:30px;"
+		                           data-options="labelAlign:'right',prompt:'yyyy-mm-dd hh:mm:ss',labelWidth:'100px',label:'发布时间:',required:true" />
+		                </div>
+						<div class="col-sm-12" style="margin: 5px 0;">
+						     <select class="easyui-combobox" id="languageType" name="languageType" style="width:200px;height:30px;" data-options="label:'语言类型:',labelWidth:'100px',
+										labelAlign:'right',editable:false,panelHeight:'auto',prompt:'请选择语言',required:true">
+										<!-- <option value="0">中文</option> -->
+										<option value="1">英文</option>
+							 </select>
+		               	</div>
+		              </div>
+		               <div class="col-sm-4">
+			                <div class="col-sm-12" style="margin: 5px 0;">
+			                    <input class="easyui-numberspinner"  name="displayOrder" style="width:200px;height:30px;"
+			                           data-options="labelAlign:'right',prompt:'请输入排序,数字倒序排列',labelWidth:'100px',label:'显示顺序:',min:0,max:100" />
+			                </div>
+			                <div class="col-sm-12" style="margin: 5px 0;">
+			                   <select class="easyui-combobox" id="status" name="status" style="width:200px;height:30px;margin: 10px;" data-options="label:'显示状态:',labelWidth:'100px',
+										labelAlign:'right',editable:false,panelHeight:'auto',prompt:'是否前端显示',required:true">
+										<option value="2">显示</option>
+										<option value="0">不显示</option>
+						    	</select>
+			                </div>
+					</div>
+	               
+                </div>
+                <div class="col-sm-12">
+	                <div class="col-sm-8" >
+	                	 <div >
+							<label for="summary" style="margin-left: 27px;">内容摘要:</label>
+							<textarea id="summary" name="summary" class="autosize-transition form-control" 
+							style="overflow-x: hidden; word-wrap: break-word; resize: horizontal; height: 150px; 
+								   overflow-y: visible;width:690px; margin-left: 18px;"></textarea>
+						</div>
+	                </div>
+	                <div class="col-sm-4" style="margin: 5px 0;">
+	                	<span style="margin-left: 27px;">内容主图：</span>
+		                <div style="width:300px;height:150px;background-color: floralwhite;margin-left: 28px;" class="ace-thumbnails clearfix" id="uploadImage">
+							    <input id="file" type="file" onChange="upload()" style="width:300px;height:150px;opacity: 0;" />
+							    <img id="image" src="" style="width:300px;height:150px;margin-top:-150px;" alt="" src="">
+								<div id="preview" style="margin-top:-150px;">
+									<img id="previewImage" src="" style="margin-left: 100px;margin-top: 20px;"/>
+									<div style="margin-left: 301px;margin-top: 101px" class="btn btn-danger btn-sm" onClick="reset();"><i class="ace-icon fa fa-trash-o icon-only"></i></div>
+								</div>
+		                </div>
+	                </div>
+               </div>
+                <div class="col-sm-12">
+                	<div style="margin-left:30px;" id="ck" style="margin-botto:15px;">
+                  	 	<textarea id="content" name="content" style="width:900px;"></textarea>
+                	</div>
+                </div>
+			</form>
+	</div>
+	<!-- <div id="cms_article__dialog"  style="position: absolute;top:-10000px;left:-10000px;">
+		<form id="cms_article_edit_form" class="easyui-form queryform" enctype="multipart/form-data" 
+		method="post" data-options="novalidate:false" >
+				<input  name="articleId" type="hidden" />
+				<div class="qcol col-sm-12">
+                    <input class="easyui-textbox" id="title" name="title" style="width:700px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入标题',labelWidth:'100px',
+					label:'标题:',required:true,validType:'length[1,100]'" />
+					<span style="color:red">*</span>
+                </div>
+               <div class="qcol col-sm-12">
+                    <div class="qcol col-sm-6">
+                    <input class="easyui-textbox" name="subTitle" style="width:340px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入子标题',labelWidth:'100px',label:'子标题:',validType:'length[1,100]'" />
+                   </div>
+                   <div class="qcol col-sm-6">
+						<input id="file" type="file" onChange="upload()" class="file"/>
+	           		</div>
+                </div>
+				<div class="qcol col-sm-6">
+		            <input class="easyui-textbox" name="keyword" style="width:350px;height:30px;"
+		                          	data-options="labelAlign:'right',prompt:'请输入关键字',labelWidth:'100px',label:'关键字:'" />
+	           		<p/>
+				 	<input class="easyui-textbox" name="shortTitle" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入短标题',labelWidth:'100px',label:'短标题:',validType:'length[1,100]'" />
+	                <p/>
+	                <select class="easyui-combobox" id="status" name="status" style="width:350px;height:30px;margin: 10px;" data-options="label:'审核状态:',labelWidth:'100px',
+								labelAlign:'right',editable:false,panelHeight:'auto',prompt:'请选择是否前端显示',required:true">
+								<option value="2">显示</option>
+								<option value="0">不显示</option>
+								<option value="1">未审核</option>
+				    </select>
+				    <span style="color:red">*</span>
+				    <p/>
+                    <select class="easyui-combobox" id="languageType" name="languageType" style="width:350px;height:30px;" data-options="label:'语言类型:',labelWidth:'100px',
+							labelAlign:'right',editable:false,panelHeight:'auto',prompt:'请选择语言',required:true">
+							<option value="0">中文</option>
+							<option value="1">英文</option>
+					</select>
+					<span style="color:red">*</span>
+                  	<input name="images" id="images" class="easyui-validatebox" type="hidden">
+               	</div>
+                <div class="qcol col-sm-6">
+	                <div style="width:310px;height:150px;background-color: floralwhite;" class="ace-thumbnails clearfix">
+							<div style="margin-top: -16px;">内容主图</div>
+							<img id="image"src="" style="width:310px;height:150px;" alt="" src="">
+							<div class="inner" style="margin: -31px 270px;">
+									<a href="#" onClick="resetImage();">
+										<i class="ace-icon fa fa-undo bigger-230"></i>
+									</a>
+							</div>
+	                </div>
+                </div>
+               
+                <div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="summary" style="width:700px;height:100px;"
+                           data-options="labelAlign:'right',prompt:'请输入内容摘要',labelWidth:'100px',label:'内容摘要:',multiline:true" />
+                </div>
+                <div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="source" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入内容来源',labelWidth:'100px',label:'内容来源:'" />
+                    <input class="easyui-textbox" name="sourceUrl" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入内容来源地址',labelWidth:'100px',label:'来源地址:'" />
+                </div>
+                <div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="targetUrl" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入跳转目标地址',labelWidth:'100px',label:'目标地址:'" />
+                    <input class="easyui-textbox" name="targetUrlPrefix" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入跳转目标地址前缀',labelWidth:'100px',label:'地址前缀:'" />
+                </div>
+                <div class="qcol col-sm-12">
+                    <input class="easyui-numberspinner"  name="displayOrder" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入排序,数字倒序排列',labelWidth:'100px',label:'显示顺序:',required:true,min:0,max:100" />
+					 <select id="moduleId" class="easyui-combobox" id="moduleId" name="moduleId" style="width:350px;height:30px;" data-options="label:'所属模块:',labelWidth:'100px',
+							labelAlign:'right',editable:false,panelHeight:'auto',valueField:'id',textField:'name',required:true,prompt:'请选择模块'">
+					</select>
+					<span style="color:red">*</span>
+                </div>
+                <div class="qcol col-sm-12">
+                	<div style="margin-left:30px;" id="ck">
+                  	 	<textarea id="content" name="content" style="width:900px;"></textarea>
+                	</div>
+                </div>
+			</form>
+	</div> -->
+</div>
+</div>
+<script type="text/javascript" src="/js/cms/cms_edit_content.js"></script>
+<link rel="stylesheet" type="text/css" href="css/admin.css">
+<script type="text/javascript">
+	 $.parser.parse(".easyuitag");
+</script>

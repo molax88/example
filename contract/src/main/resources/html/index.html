@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="zh-CN" lang="zh-CN">
+	<head>
+		<meta name="renderer" content="webkit" />
+		<base href="" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta http-equiv="Cache-Control" content="no-store,no-cache,must-revalidate" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta name="description" content="朝夕" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.5.5/themes/easyui/bootstrap/easyui.css" />
+		<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.5.5/themes/easyui/icon.css" />
+		
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<!-- page specific plugin styles -->
+		<!-- ace styles -->
+		<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+		<style type="text/css">
+		.sidebar .sidebar-shortcuts-large>.btn{
+			padding:5px;
+		}
+		#page-content-detail{
+			width:99%;
+	        position:absolute;
+		}
+		#page-content-detail .queryform .qcol{
+			margin:5px 0;
+		}
+		#index_body i.fa-caret-right{
+			margin-top:0;
+		}
+		</style>
+		
+		<!-- ace settings handler -->
+		<script src="assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+		<!--[if lte IE 8]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script src="assets/js/jquery-2.1.4.min.js"></script>
+		<!-- <![endif]-->
+		<!--[if IE]>
+		<script src="assets/js/jquery-1.11.3.min.js"></script>
+		<![endif]-->
+		<script type="text/javascript">
+		var _commonContextPath=document.location.protocol+"//"+window.location.host+"/contract/html/";
+		var _version="?v=baseJs.1.0";
+		var _min_css="";
+		var _min_js="";
+		
+		</script>
+		<script type="text/javascript" src="js/layer-v3.1.1/layer/layer.js"></script>
+		<script type="text/javascript" src="base.js"></script>
+		<link href="favicon.ico" rel="shortcut icon" type="text/css" />
+		<link href="favicon.ico" rel="Bookmark" type="text/css" />
+		<script type="text/javascript" src="js/jquery-easyui-1.5.5/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-easyui-1.5.5/locale/easyui-lang-zh_CN.js"></script>
+		<title></title>
+	</head>
+	<body class="no-skin easyui" id="index_body">
+		<div id="navbar" class="navbar navbar-default ace-save-state navbar-fixed-top"></div>
+		<div id="main-container" class="main-container ace-save-state" style="height: 1000px;"></div>
+		<script type="text/javascript">
+		if ($.fn.datagrid){
+			$.fn.datagrid.defaults.loadFilter= function(data) {
+		    	if("200"==data.code){
+					var total=data.msg.totalSize||0;
+					delete data.msg.totalSize;
+					data.msg.total=total;
+					if(!data.msg.rows){
+						data.msg.rows=[];
+					}
+					return data.msg;
+				}
+				layer.alert(data.msg);
+				return {
+		    	    total:0,
+					row:[]
+				};
+			}
+			$.fn.datagrid.defaults.striped=true;
+			$.fn.datagrid.defaults.nowrap=false;
+			$.fn.datagrid.defaults.pagination=true;
+			$.fn.datagrid.defaults.resizeHandle="right";
+			$.fn.datagrid.defaults.resizeEdge=5;
+			$.fn.datagrid.defaults.autoRowHeight=true;
+			$.fn.datagrid.defaults.pagePosition="bottom";
+			$.fn.datagrid.defaults.rownumbers=true;
+			$.fn.datagrid.defaults.singleSelect=true;
+			$.fn.datagrid.defaults.ctrlSelect=true;
+			$.fn.datagrid.defaults.selectOnCheck=true;
+			$.fn.datagrid.defaults.checkOnSelect=true;
+			$.fn.datagrid.defaults.showFooter=true;
+			$.fn.datagrid.defaults.url=_servicePath + "invokeHpbCmd";
+			$.fn.datagrid.defaults.fitColumns=false;
+			$.fn.datagrid.defaults.method="post";
+		}
+		$.include("page/includes/header_nav.html","#navbar",function(){
+			$.include("page/includes/navbar-container-navigation.html","#navbar-container-navigation",function(){});
+			$.include("page/includes/main-container.html","#main-container",function(){});
+			$("title").html(getPageProp("m_page_title"));
+		});
+		
+		var logonName = corecode.cookie.get("username");
+		if(logonName){
+			$("#logonName").html('<small>欢迎,</small>'+logonName);
+		}else{
+			$("#logonName").html('<small>欢迎,</small>管理员');
+		}
+		</script>
+		<a href="javascript:void(0);" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+			<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+		</a>
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!-- ace scripts -->
+		<script src="assets/js/ace-elements.min.js"></script>
+		<script src="assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script src="js/date/moment.js"></script>
+		<script src="assets/ckeditor/ckeditor.js"></script>
+		<script src="js/core/jquery.form.js"></script>
+		<!-- <script src="assets/ckeditor5-build-classic/ckeditor.js"></script> -->
+		
+		
+	</body>
+</html>

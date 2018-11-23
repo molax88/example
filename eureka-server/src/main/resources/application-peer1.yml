@@ -1,0 +1,15 @@
+spring:
+  profiles: peer1
+server:
+  port: 8761
+eureka:
+  server:
+    peer-node-read-timeout-ms: 500
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8762/eureka/
+    register-with-eureka: false
+    fetch-registry: false

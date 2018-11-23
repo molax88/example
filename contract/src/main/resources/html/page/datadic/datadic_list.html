@@ -1,0 +1,126 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="vermng_div_1" title="查询条件"
+		class="easyui-panel queryform" style="width: 100%;">
+		<form id="datadic_query_form"
+			style="width: 99%;padding-left:10% " class="easyui-form"
+			method="post" data-options="novalidate:true">
+			<div class="col-sm-12 qry_tp0">
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="dataTypeNo" style="width:300px; height: 30px;"
+						data-options="label:'字典类型编号:',labelWidth:'110px !important;'">
+				</div>
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="dataTypeName" style="width:300px; height: 30px;"
+						data-options="label:'字典类型名称:',labelWidth:'110px'">
+				</div>
+			</div>
+			<div class="col-sm-12 qry_tp0">
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="dataName" style="width:300px; height: 30px;"
+						data-options="label:'字典名称:',labelWidth:'110px'">
+				</div>
+				<div class="qcol col-sm-6">
+					<select class="easyui-combobox" name="state" data-options="label:'状态:',width:'300px',
+						editable:false,panelHeight:'auto'">
+						<option value="">全部</option>
+						<option value="1">生效</option>
+						<option value="0">失效</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-12 qry_tp0">
+				<div class="col-sm-9 qry_btn0">
+					<div class="qcol col-sm-6">
+					 <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+	                       data-options="iconCls:'icon-search',iconAlign:'right'"
+	                       style="width:80px;">查询</a>
+		             </div>
+		              <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+	                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+	                       style="width:80px;margin-left: 40px;">重置</a>
+		             </div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div title="数据字典列表" class="easyui-panel " style="width: 100%;">
+		<table id="datadic_list_datagrid" style="width: 100%;">
+	          <thead>
+	          <tr>
+	              <th data-options="field:'id',width:'100'">编号</th>
+	              <th data-options="field:'dataTypeNo',width:'100'">字典类型编号</th>
+	              <th data-options="field:'dataTypeName',width:'200'">字典类型名称</th>
+	              <th data-options="field:'dataNo',width:'100'">字典编号</th>
+	              <th data-options="field:'dataName',width:'200'">字典名称</th>
+	              <th data-options="field:'state',formatter:function(val){
+            			  if(val=='1'){return '生效';}return '失效';},width:'100'" >状态</th>
+            	  <th data-options="field:'createTime',formatter:function(val){
+            			  if(val>0){return moment(parseInt(val)).format('YYYY-MM-DD h:mm:ss');}},width:'150'" >创建时间</th>
+	          </tr>
+	          </thead>
+	      </table>
+	</div>
+	<div id="vermng_dialog"  style="position: absolute;top:-10000px;left:-10000px;">
+		<form id="datadic_edit_form" class="easyui-form queryform" method="post" data-options="novalidate:false">
+				<input  name="id" type="hidden" />
+				<div class="qcol col-sm-12">
+                    <input class="easyui-textbox" id="dataTypeNo" name="dataTypeNo" style="width:400px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入字典类型编号',labelWidth:'100px',
+					label:'字典类型编号:',required:true,validType:['verNo','length[1,100]'],invalidMessage:'maxlenth 100!'" />
+					<span style="color:red">*</span>
+                </div>
+               <div class="qcol col-sm-12">
+                    <input class="easyui-textbox" id="dataTypeName" name="dataTypeName" style="width:400px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入字典类型名称',labelWidth:'100px',label:'字典类型名称:'" />
+                </div>
+                <div class="qcol col-sm-12">
+                   <input class="easyui-textbox" id="dataNo" name="dataNo" style="width:400px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入字典编号',labelWidth:'100px',label:'字典编号:'" />
+                   <span style="color:red">*</span>
+                </div>
+                <div class="qcol col-sm-12">
+                   <input class="easyui-textbox" id="dataName" name="dataName" style="width:400px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入字典名称',labelWidth:'100px',label:'字典名称:'" />
+                </div>
+                 <div class="qcol col-sm-12">
+                    <select class="easyui-combobox" id="state" name="state" style="width:400px;height:30px;margin: 10px;" data-options="label:'状态:',labelWidth:'100px',
+								labelAlign:'right',editable:false,panelHeight:'auto'">
+								<option value="1">生效</option>
+								<option value="0">失效</option>
+				    </select>
+				    <span style="color:red">*</span>
+                </div>
+                <div class="qcol col-sm-12">
+                   <input class="easyui-textbox" id="showSeq" name="showSeq" style="width:400px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入显示顺序',labelWidth:'100px',label:'显示顺序:'" />
+                </div> 
+			</form>
+	</div>
+</div>
+<script type="text/javascript" src="/js/datadic/datadic_list.js"></script>
+<link rel="stylesheet" type="text/css" href="css/admin.css">
+<script type="text/javascript">
+	$.parser.parse(".easyuitag");
+</script>
+<style type="text/css">
+	.qry_spn0{
+		    width: 220px !important;
+	}
+	.textbox-label {
+	    display: inline-block;
+	    height: 30px;
+	    line-height: 30px;
+	    vertical-align: middle;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    margin: 0;
+	    padding-right: 5px;
+	    width: 100px !important;
+	    text-align: right !important;
+	    margin-right: 15px !important;
+	}
+</style>

@@ -1,0 +1,153 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="vermng_div_1" title="查询条件"
+		class="easyui-panel queryform" style="width: 100%;">
+		<form id="vermng_query_form"
+			style="width: 99%;padding-left:10% " class="easyui-form"
+			method="post" data-options="novalidate:true">
+			<div class="col-sm-12 qry_tp0">
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="verNo" style="width:300px; height: 30px;"
+						data-options="label:'版本号:',labelWidth:'110px'">
+				</div>
+				<div class="qcol col-sm-6">
+					<select class="easyui-combobox" name="state" data-options="label:'版本状态:',width:'300px',
+						editable:false,panelHeight:'auto'">
+						<option value="">全部</option>
+						<option value="1">生效</option>
+						<option value="0">失效</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-12 qry_tp0">
+				<div class="qcol col-sm-6">
+					<select class="easyui-combobox" name="langType" data-options="label:'语言类型:',width:'300px',
+						editable:false,panelHeight:'auto'">
+						<option value="">全部</option>
+						<option value="0">中文</option>
+						<option value="1">英文</option>
+					</select>
+				</div>
+				<div class="qcol col-sm-6">
+					<select class="easyui-combobox" name="mobileType" data-options="label:'手机类型:',width:'300px',
+						editable:false,panelHeight:'auto'">
+						<option value="">全部</option>
+						<option value="0">安卓</option>
+						<option value="1">IOS</option>
+						<option value="2">其他</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-12 qry_tp0">
+				<div class="col-sm-9 qry_btn0">
+					<div class="qcol col-sm-6">
+					 <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+	                       data-options="iconCls:'icon-search',iconAlign:'right'"
+	                       style="width:80px;">查询</a>
+		             </div>
+		              <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+	                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+	                       style="width:80px;margin-left: 40px;">重置</a>
+		             </div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div title="版本管理列表" class="easyui-panel " style="width: 100%;">
+		<table id="vermng_list_datagrid" style="width: 100%;">
+	          <thead>
+	          <tr>
+	          		<th data-options="field:'mobileType',formatter:function(val){
+            			  if(val=='1'){return 'IOS';}return '安卓';},width:'50'" >手机类型</th>
+	              <th data-options="field:'verNo',width:'100'">版本号</th>
+	              <th data-options="field:'state',formatter:function(val){
+            			  if(val=='1'){return '生效';}return '失效';},width:'50'" >版本状态</th>
+            	  <th data-options="field:'isForceFlag',formatter:function(val){
+            			  if(val=='1'){return '是';}return '否';},width:'80'" >是否强制更新</th>
+            	  <th data-options="field:'langType',formatter:function(val){
+            			  if(val=='0'){return '中文';}return '英文';},width:'50'" >语言类型</th>
+	              <th data-options="field:'remark',width:'150'" >备注</th>
+	              <th data-options="field:'createTime',formatter:function(val){
+            			  if(val>0){return moment(parseInt(val)).format('YYYY-MM-DD h:mm:ss');}},width:'100'" >创建时间</th>
+	              <th data-options="field:'downloadUrl',width:'200'">下载地址</th>
+	              
+	          </tr>
+	          </thead>
+	      </table>
+	</div>
+	<div id="vermng_dialog"  style="position: absolute;top:-10000px;left:-10000px;">
+		<form id="vermng_edit_form" class="easyui-form queryform" method="post" data-options="novalidate:false">
+				<input  name="id" type="hidden" />
+				<div class="qcol col-sm-12">
+                    <input class="easyui-textbox" id="verNo" name="verNo" style="width:400px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'版本号',labelWidth:'100px',
+					label:'版本号',required:true,validType:['verNo','length[1,100]'],invalidMessage:'maxlenth 100!'" />
+					<span style="color:red">*</span>
+                </div>
+               <div class="qcol col-sm-12">
+               		<input class="easyui-textbox" id="verContent" name="verContent" style="width:400px;height:100px;"
+                           data-options="labelAlign:'right',prompt:'请输入版本内容',labelWidth:'100px',label:'版本内容:',multiline:true" />
+                    <span style="color:red">*</span>
+                </div>
+                <div class="qcol col-sm-12">
+                   <input class="easyui-textbox" name="downloadUrl" style="width:400px;height:30px;" id="downloadUrl"
+                           data-options="labelAlign:'right',prompt:'请输入下载地址',labelWidth:'100px',label:'下载地址:'" />
+                </div>
+                <div class="qcol col-sm-3" style="width:24%;text-align: right;font-size: 15px;padding-right: 9px;">
+                    		选择文件:
+                </div>
+                 <div class="qcol col-sm-6">
+                    <input id="file" type="file" onChange="uploadApk()" class="file"/>
+                </div>
+                
+                
+                 <div class="qcol col-sm-12">
+                    <select class="easyui-combobox" id="state" name="state" style="width:400px;height:30px;margin: 10px;" data-options="label:'状态:',labelWidth:'100px',
+								labelAlign:'right',editable:false,panelHeight:'auto'">
+								<option value="1">生效</option>
+								<option value="0">失效</option>
+				    </select>
+				    <span style="color:red">*</span>
+                </div>
+                <div class="qcol col-sm-12">
+                    <select class="easyui-combobox" name="mobileType" style="width:400px;height:30px;margin: 10px;" data-options="label:'手机类型:',labelWidth:'100px',
+								labelAlign:'right',editable:false,panelHeight:'auto'">
+								<option value="0">安卓</option>
+								<option value="1">IOS</option>
+								<option value="2">其他</option>
+				    </select>
+                </div>
+                 <div class="qcol col-sm-12">
+                    <select class="easyui-combobox" name="langType" style="width:400px;height:30px;margin: 10px;" data-options="label:'语言类型:',labelWidth:'100px',
+								labelAlign:'right',editable:false,panelHeight:'auto'">
+								<option value="0">中文</option>
+								<option value="1">英文</option>
+				    </select>
+                </div>
+                 <div class="qcol col-sm-12">
+                    <select class="easyui-combobox" name="isForceFlag" style="width:400px;height:30px;margin: 10px;" data-options="label:'是否强制更新:',labelWidth:'100px',
+								labelAlign:'right',editable:false,panelHeight:'auto'">
+								<option value="1">是</option>
+								<option value="0">否</option>
+				    </select>
+                </div>
+                <div class="qcol col-sm-12">
+               		<input class="easyui-textbox" name="remark" style="width:400px;height:100px;"
+                           data-options="labelAlign:'right',prompt:'请输入备注',labelWidth:'100px',label:'备注:',multiline:true" />
+                </div>
+               
+			</form>
+	</div>
+</div>
+<script type="text/javascript" src="/js/vermng/version_list.js"></script>
+<link rel="stylesheet" type="text/css" href="css/admin.css">
+<script type="text/javascript">
+	$.parser.parse(".easyuitag");
+</script>
+<style type="text/css">
+	.qry_spn0{
+		    width: 220px !important;
+	}
+</style>

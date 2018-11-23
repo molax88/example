@@ -1,0 +1,58 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+      <form  id="register_organization_form" style="width:99%;" 
+           class="easyui-form queryform" method="post" data-options="novalidate:true">
+          <div class="qcol col-sm-12">
+               <input class="easyui-textbox" id="fullName" name="fullName" style="width:380px;height:30px;"
+                      data-options="labelAlign:'right',prompt:'请输入机构名称',labelWidth:'120px',
+					  label:'机构名称:',required:true,validType:'length[1,1024]'" />
+          </div>
+          <div class="qcol col-sm-12">
+               <input class="easyui-textbox" id="shortName" name="shortName" style="width:380px;height:30px;"
+                     data-options="labelAlign:'right',prompt:'请输入机构简称',labelWidth:'120px',
+		             label:'机构简称:',required:true,validType:'length[1,1024]'" />
+          </div>
+          <div class="qcol col-sm-12">
+               <input class="easyui-passwordbox" id="password" name="password" style="width:380px;height:30px;"
+                 data-options="labelAlign:'right',prompt:'请输入机构密码，长度在8-18位',labelWidth:'120px',
+		        label:'机构密码:',required:true,validType:'length[8,18]'" />
+          </div>
+          <div class="qcol col-sm-12">
+               <input class="easyui-textbox" id="identityNumber" name="identityNumber" style="width:380px;height:30px;"
+                 data-options="prompt:'请输入机构纳税识别号',labelAlign:'right',required:true,
+		         labelWidth:'120px',label:'机构纳税识别号:',validType:'idcard'" />
+          </div>
+          <div class="qcol col-sm-12">
+               <input class="easyui-textbox" id="userMobile" name="userMobile" style="width:380px;height:30px;"
+                data-options="labelAlign:'right',prompt:'请输入机构联系电话',labelWidth:'120px',label:'机构联系电话:',
+	            required:true,validType:'mobile,phone'" />
+          </div>
+          <div class="qcol col-sm-12">
+               <input class="easyui-textbox" id="userEmail" name="userEmail" style="width:380px;height:30px;"
+                 data-options="labelAlign:'right',prompt:'请输入机构邮箱',labelWidth:'120px',label:'机构邮箱:',
+		         required:true,validType:'email'" />
+          </div>
+          <div class="qcol col-sm-12">
+               <input class="easyui-textbox" id="publicKey" name="publicKey" style="width:380px;height:60px;"
+                data-options="labelAlign:'right',prompt:'请输入机构公钥',labelWidth:'120px',label:'机构公钥:',
+                multiline:true,required:true" />
+          </div>
+          <div class="qcol col-sm-12" style="display: none">
+              <input class="easyui-textbox" id="type" name="type" style="width:380px;height:60px;" value="1" />
+          </div>
+          <div class="col-sm-12">
+           <div class="qcol col-sm-2">&nbsp;</div>
+           <div class="qcol col-sm-3">
+			 <a href="javascript:void(0)" class="easyui-linkbutton" 
+			   onclick="clearForm('#register_organization_form')"
+               data-options="iconCls:'icon-undo',iconAlign:'right'">&nbsp;&nbsp;重置&nbsp;&nbsp;</a>
+               &nbsp;&nbsp;
+	         <a href="javascript:void(0);" class="easyui-linkbutton" onclick="createAccount();"
+               data-options="iconCls:'icon-ok',iconAlign:'right'">&nbsp;&nbsp;确定&nbsp;&nbsp;</a>
+           </div>
+          </div>
+      </form>
+</div>
+<script type="text/javascript" src="/js/account/register_organization.js"></script>
+<script type="text/javascript">
+	$.parser.parse(".easyuitag");
+</script>

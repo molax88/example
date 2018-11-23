@@ -1,0 +1,26 @@
+<a data-toggle="dropdown" href="#" class="dropdown-toggle"> 
+	<img class="nav-user-photo" src="assets/images/avatars/avatar2.png" alt="User's Photo" /> 
+	<span class="user-info" id="logonName"> <small>欢迎,</small>Jason</span> 
+	<i class="ace-icon fa fa-caret-down"></i>
+</a>
+<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+	<!-- <li>
+		<a href="JavaScript:void(0);"> 
+			<i class="ace-icon fa fa-user"></i>个人信息
+		</a>
+	</li> -->
+	<li class="divider"></li>
+	<li>
+		<a href="JavaScript:void(0);" onclick="JavaScript:toLogout();"> 
+			<i class="ace-icon fa fa-power-off"></i>退出
+		</a>
+	</li>
+</ul>
+<script type="text/javascript">
+	    var logonName = corecode.cookie.get("username");
+		if(logonName){
+			document.getElementById("logonName").innerHTML = '<small>欢迎,</small>'+logonName;
+		}else{
+			document.getElementById("logonName").innerHTML = '<small>欢迎,</small>管理员';
+		}
+</script>

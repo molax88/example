@@ -1,0 +1,57 @@
+@charset "utf-8";
+.qry_btn0{
+	margin-left: 200px;
+}
+.qry_tp0{
+	margin-top: 10px;
+}
+.textbox-label {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+    padding-right: 5px;
+    width: 80px !important;
+    text-align: right !important;
+	margin-right: 15px !important;
+}
+.easyui .textbox { 
+    position: relative;
+    border: 1px solid #D4D4D4;
+    background-color: #fff;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    width: 218px !important;
+}
+.easyui .textbox .textbox-text {
+	font-size: 12px;
+	border: 0;
+	margin: 0;
+	padding: 0 4px;
+	white-space: normal;
+	vertical-align: top;
+	outline-style: none;
+	resize: none;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	height: 28px;
+	line-height: 28px;
+	width: 192px !important;
+}
+.footer {
+    padding-top: 500px;
+    height: 0;
+    width: 0;
+}

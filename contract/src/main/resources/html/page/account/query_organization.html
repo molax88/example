@@ -1,0 +1,128 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="query_organization_div_1" title="查询条件" class="easyui-panel queryform"
+		    style="width: 100%;">
+        <form id="query_organization_form" style="width:99%;padding-left:10%;" class="easyui-form" method="post"
+              data-options="novalidate:true">
+               <div class="col-sm-9">
+                 <div class="qcol col-sm-6">
+                    <input class="easyui-textbox" name="fullName" style="width:300px;height:30px;"
+                           data-options="label:'机构名称:'">
+                 </div>
+                 <div class="qcol col-sm-6">
+                    <input class="easyui-textbox" name="shortName" style="width:300px;height:30px;"
+                           data-options="label:'机构简称:'">
+                 </div>
+               </div>
+               <div class="col-sm-9">
+                 <div class="qcol col-sm-6">
+                    <input class="easyui-textbox" name="identityNumber" style="width:300px;height:30px;"
+                           data-options="label:'纳税识别号:'">
+                 </div>
+                 <div class="qcol col-sm-6">
+                    <input class="easyui-textbox" name="mobile" style="width:300px;height:30px;"
+                           data-options="label:'机构手机号:'">
+                 </div>
+               </div>
+               <div class="col-sm-9">
+                 <div class="qcol col-sm-6">
+                      <input class="easyui-textbox" name="email" style="width:300px;height:30px;"
+                           data-options="label:'机构邮箱:'">
+                 </div>
+	              <div class="qcol col-sm-6">
+		             <div class="col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+	                       data-options="iconCls:'icon-search',iconAlign:'right'"
+	                       style="width:80px;">查询</a>
+		             </div>
+		             <div class="col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+	                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+	                       style="width:80px;">重置</a>
+		             </div>
+	              </div>
+               </div>
+         </form>
+	</div>
+	<table style="width: 100%;" id="query_org_datalist" title="机构信息列表">
+		<thead data-options="frozen:true">
+			<tr>
+	             <th data-options="field:'accountId',width:300">账户地址</th>
+	             <th data-options="field:'ownerId',width:250">账户标识</th>
+			</tr>
+		</thead>
+         <thead>
+         <tr>
+             <th data-options="field:'fullName',width:180">机构全称</th>
+             <th data-options="field:'shortName',width:180">机构简称</th>
+             <th data-options="field:'identityNumber',width:180">机构纳税识别号</th>
+             <th data-options="field:'mobile',width:180">机构手机号</th>
+             <th data-options="field:'email',width:180">机构邮箱</th>
+             <th data-options="field:'status',formatter:function(value){
+            	return {'0':'禁用','1':'启用'}[value];},width:150">账户状态</th>
+         </tr>
+         </thead>
+     </table>
+     <div style="position:absolute;top:-10000px;left:-10000px;">
+	<form id="query_org_detail_form" class="easyui-form queryform" method="post"
+	      data-options="novalidate:true">
+	        <div class="qcol col-sm-12 newAccount">
+	     	    <input class="easyui-textbox" id="accountId" name="accountId" style="width:480px;height:30px;"
+	            data-options="labelAlign:'right',readonly:true,labelWidth:'120px',
+	            label:'账户地址:',required:true" />
+	        </div>
+	        <div class="qcol col-sm-12 newAccount">
+	         <input class="easyui-textbox" id="ownerId" name="ownerId" style="width:480px;height:30px;"
+	            data-options="labelAlign:'right',readonly:true,labelWidth:'120px',
+	            label:'账户标识:',required:true" />
+	        </div>
+	        <div class="qcol col-sm-12">
+	           <input class="easyui-textbox" id="fullName" name="fullName" style="width:480px;height:30px;"
+	            data-options="labelAlign:'right',prompt:'请输入机构名称',labelWidth:'120px',
+	         label:'机构名称:',required:true,validType:'length[1,1024]'" />
+	        </div>
+	        <div class="qcol col-sm-12">
+	         <input class="easyui-textbox" id="shortName" name="shortName" style="width:480px;height:30px;"
+	         data-options="labelAlign:'right',prompt:'请输入机构简称',labelWidth:'120px',
+	         label:'机构简称:',required:true,validType:'length[1,1024]'" />
+	        </div>
+	        <div class="qcol col-sm-12">
+	           <input class="easyui-passwordbox" id="password" name="password" style="width:480px;height:30px;"
+	             data-options="labelAlign:'right',prompt:'请输入机构密码，长度在8-18位',labelWidth:'120px',
+	         label:'机构密码:',validType:'length[8,18]'" />
+	    	</div>
+	        <div class="qcol col-sm-12">
+	        	<input class="easyui-textbox" id="identityNumber" name="identityNumber" style="width:480px;height:30px;"
+	               data-options="prompt:'请输入机构纳税识别号',labelAlign:'right',required:true,
+	            labelWidth:'120px',label:'机构纳税识别号:',validType:'idcard'" />
+	    	</div>
+	        <div class="qcol col-sm-12">
+	           <input class="easyui-textbox" id="mobile" name="mobile" style="width:480px;height:30px;"
+	            data-options="labelAlign:'right',prompt:'请输入机构联系电话',labelWidth:'120px',label:'机构联系电话:',
+	         required:true,validType:'mobile,phone'" />
+	    	</div>
+	        <div class="qcol col-sm-12">
+	        	<input class="easyui-textbox" id="email" name="email" style="width:480px;height:30px;"
+	             data-options="labelAlign:'right',prompt:'请输入机构邮箱',labelWidth:'120px',label:'机构邮箱:',
+	             required:true,validType:'email'" />
+	    	</div>
+	        <div class="qcol col-sm-12">
+	       		<input class="easyui-textbox" id="publicKey" name="publicKey" style="width:480px;height:60px;"
+	             data-options="labelAlign:'right',prompt:'请输入机构公钥',labelWidth:'120px',label:'机构公钥:',
+	             multiline:true,required:true" />
+	    	</div>
+	        <div class="qcol col-sm-12">
+	         <select class="easyui-combobox" name="status" style="width:480px;height:30px;"
+	               data-options="labelAlign:'right',prompt:'请选择机构状态',labelWidth:'120px',
+	               label:'机构状态:',required:true,panelHeight:'auto'" >
+	             <option value="1">启用</option>
+	             <option value="0">禁用</option>
+	         </select>
+	    	</div>
+	</form>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$.parser.parse(".easyuitag");
+</script>
+<script type="text/javascript" src="/js/account/query_organization.js"></script>

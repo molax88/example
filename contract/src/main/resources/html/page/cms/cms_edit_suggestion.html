@@ -1,0 +1,95 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="cms_suggestion_div_1" title="查询条件"
+		class="easyui-panel queryform" style="width: 100%;">
+		<form id="cms_suggestion_query_form"
+			style="width: 99%;padding-left:10% " class="easyui-form"
+			method="post" data-options="novalidate:true">
+			<div class="col-sm-12 qry_tp0">
+				<div>
+					<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="title" style="width:300px; height: 30px;"
+						data-options="label:'反馈标题:',labelWidth:'110px'">
+					</div>
+					<div class="qcol col-sm-6">
+						<input class="easyui-textbox" name="contact" style="width:300px; height: 30px;"
+							data-options="label:'联系方式:',labelWidth:'110px'">
+					</div>
+					<div class="qcol col-sm-12">
+						<select class="easyui-combobox" name="type" data-options="label:'反馈类型:',width:'300px',editable:false,panelHeight:'130px'">
+							<option value="">全部</option>
+							<option value="0">问题</option>
+							<option value="1">建议</option>
+							<option value="2">其它</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-sm-9 qry_btn0">
+					<div class="qcol col-sm-4">
+						 <div class="qcol col-sm-6">
+		                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+		                       data-options="iconCls:'icon-search',iconAlign:'right'"
+		                       style="width:80px;">查询</a>
+			             </div>
+			              <div class="qcol col-sm-6">
+		                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+		                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+		                       style="width:80px;margin-left: 40px;">重置</a>
+			             </div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div title="数据列表" class="easyui-panel " style="width: 100%;">
+		<table id="cms_suggestion_list_datagrid" style="width: 100%;">
+	          <thead>
+	          <tr>
+	              <th data-options="field:'id',width:'100'">反馈编号</th>
+	              <th data-options="field:'title',width:'100'">反馈标题</th>
+	              <th data-options="field:'type',width:'100',formatter:function(val){
+            			  if(val==0){return '问题';} if(val==1){return '建议';} return '其它'; }">反馈类型</th>
+	              <th data-options="field:'contact',width:'100'" >联系方式</th>
+	              <th data-options="field:'createTime',formatter:function(val){
+            			  if(val>0){return moment(parseInt(val)).format('YYYY-MM-DD h:mm:ss');}},width:'50'" >创建时间</th>
+	          </tr>
+	          </thead>
+	      </table>
+	</div>
+	<div id="cms_suggestion__dialog"  style="position: absolute;top:-10000px;left:-10000px;">
+		<form id="cms_suggestion_edit_form" class="easyui-form queryform" method="post" data-options="novalidate:false">
+				<input  name="id" type="hidden" />
+				<div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="title" style="width:500px;height:30px;"
+                           data-options="labelAlign:'right',labelWidth:'100px',
+					label:'反馈标题:',required:true,validType:'length[1,100]',editable:false" />
+                </div>
+               <div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="contact" style="width:500px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入联系方式',labelWidth:'100px',label:'联系方式:',
+                           required:true,validType:'length[1,100]',editable:false" />
+                </div>
+                <div class="qcol col-sm-12">
+                   <label class="textbox-label textbox-label-before" style="text-align:right;width:100px;height: 30px;line-height: 30px;">
+					反馈类型:</label>
+                    <input type="radio" name="type" value="0"></input>问题
+					<input type="radio" name="type" value="1"></input>建议
+					<input type="radio" name="type" value="2"></input>其它
+                </div>
+                <div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="content" style="width:500px;height:300px;"
+                           data-options="labelAlign:'right',labelWidth:'100px',label:'反馈内容:',multiline:true,editable:false" />
+                </div>
+                <div class="qcol col-sm-12">
+                   <label style="margin-left:40px;">图片内容:</label>
+                   <div id="images">
+                   </div>
+                </div>
+			</form>
+	</div>
+</div>
+<script type="text/javascript" src="/js/cms/cms_edit_suggestion.js"></script>
+<link rel="stylesheet" type="text/css" href="css/admin.css">
+<script type="text/javascript">
+	$.parser.parse(".easyuitag");
+</script>

@@ -1,0 +1,95 @@
+<div class="easyuitag" style="width: 100%; height: 100%;">
+	<div id="cms_category_div_1" title="查询条件"
+		class="easyui-panel queryform" style="width: 100%;">
+		<form id="cms_category_query_form"
+			style="width: 99%;padding-left:10% " class="easyui-form"
+			method="post" data-options="novalidate:true">
+			<div class="col-sm-12 qry_tp0">
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="categoryName" style="width:300px; height: 30px;"
+						data-options="label:'栏目名称:',labelWidth:'110px'">
+				</div>
+				<div class="qcol col-sm-6">
+					<input class="easyui-textbox" name="categoryKey" style="width:300px; height: 30px;"
+						data-options="label:'栏目Key:',labelWidth:'110px'">
+				</div>
+				<div class="col-sm-9 qry_btn0">
+					<div class="qcol col-sm-6">
+					 <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();"
+	                       data-options="iconCls:'icon-search',iconAlign:'right'"
+	                       style="width:80px;">查询</a>
+		             </div>
+		              <div class="qcol col-sm-4">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()"
+	                       data-options="iconCls:'icon-undo',iconAlign:'right'"
+	                       style="width:80px;margin-left: 40px;">重置</a>
+		             </div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div title="数据列表" class="easyui-panel " style="width: 100%;">
+		<table id="cms_category_list_datagrid" style="width: 100%;">
+	          <thead>
+	          <tr>
+	              <th data-options="field:'categoryId',width:'100'">栏目编号</th>
+	              <th data-options="field:'categoryName',width:'100'">栏目名称</th>
+	              <th data-options="field:'categoryKey',width:'100'">栏目key</th>
+	              <th data-options="field:'parentId',width:'100'" >上级栏目</th>
+	              <th data-options="field:'description',width:'200'" >栏目描述</th>
+	              <th data-options="field:'state',formatter:function(val){
+            			  if(val=='1'){return '正常';}return '禁用';},width:'50'" >禁用状态</th>
+	              <th data-options="field:'display',formatter:function(val){
+            			  if(val=='1'){return '显示';}return '不显示';},width:'50'" >显示状态</th>
+	              <th data-options="field:'displayOrder',width:'100'">栏目排序</th>
+	              <th data-options="field:'createAtTime',width:'100'">创建时间</th>
+	          </tr>
+	          </thead>
+	      </table>
+	</div>
+	<div id="cms_category__dialog"  style="position: absolute;top:-10000px;left:-10000px;">
+		<form id="cms_category_edit_form" class="easyui-form queryform" method="post" data-options="novalidate:false">
+				<input  name="categoryId" type="hidden" />
+				<div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="categoryKey" style="width:350px;height:30px;" id="categoryKey"
+                           data-options="labelAlign:'right',prompt:'请输入栏目Key',labelWidth:'100px',
+					label:'栏目Key:',required:true,validType:'length[1,100]'" />
+                </div>
+               <div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="categoryName" style="width:350px;height:30px;" id="categoryName"
+                           data-options="labelAlign:'right',prompt:'请输入栏目名称',labelWidth:'100px',label:'栏目名称:',required:true,validType:'length[1,100]'" />
+                </div>
+                <div class="qcol col-sm-12">
+                    <input class="easyui-numberbox" name="parentId" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请选择上级栏目数字序号',labelWidth:'100px',label:'上级栏目:'" />
+                </div>
+                <div class="qcol col-sm-12">
+                    <input class="easyui-textbox" name="description" style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入栏目描述',labelWidth:'100px',label:'栏目描述:'" />
+                </div>
+                <div class="qcol col-sm-12">
+                    <input class="easyui-numberbox" name=displayOrder style="width:350px;height:30px;"
+                           data-options="labelAlign:'right',prompt:'请输入栏目数字序号',labelWidth:'100px',label:'栏目排序:'" />
+                </div>
+                <div class="qcol col-sm-12">
+                   <label class="textbox-label textbox-label-before" style="text-align:right;width:100px;height: 30px;line-height: 30px;">
+					栏目状态:</label>
+                    <input type="radio" name="state" value="1"></input>正常
+					<input type="radio" name="state" value="0"></input>禁用
+                </div>
+                <div class="qcol col-sm-12">
+                   <label class="textbox-label textbox-label-before" style="text-align:right;width:100px;height: 30px;line-height: 30px;">
+					是否显示:</label>
+                    <input type="radio" name="display" value="1"></input>显示
+					<input type="radio" name="display" value="0"></input>不显示
+                </div>
+			</form>
+	</div>
+</div>
+<script type="text/javascript" src="/js/cms/cms_edit_category.js"></script>
+<link rel="stylesheet" type="text/css" href="css/admin.css">
+<script type="text/javascript">
+	$.parser.parse(".easyuitag");
+</script>
