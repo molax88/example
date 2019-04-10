@@ -1,0 +1,90 @@
+1.准备软件
+zookeeper-3.4.12.tar.gz
+kafka_2.11-1.1.0.tgz
+jdk-8u171-linux-x64.rpm
+2.准备Dockerfile文件和环境
+# cd /usr/local/kafka
+拷贝软件到当前目录
+# cp /../zookeeper-3.4.12.tar.gz .
+# cp /../kafka_2.11-1.1.0.tgzz .
+# cp /../jdk-8u171-linux-x64.rpm .
+创建Dockerfile文件
+# touch Dockerfile
+# vi Dockerfile
+输入内容：
+# Docker image of kafka cluster
+# VERSION 0.0.1
+# Author: molax
+
+#基础镜像使用kinogmt/centos-ssh:6.7，这里面已经装好了ssh，用户root密码是password
+FROM kinogmt/centos-ssh:6.7
+
+#作者
+MAINTAINER molax <molax.song@gxn.io>
+
+#定义工作目录
+ENV WORK_PATH /usr/local/work
+
+#定义日志目录
+ENV LOG_PATH /usr/local/work/log
+
+#定义zookeeper的Data目录
+ENV ZK_DATA_PATH $WORK_PATH/zkdata
+
+#定义zookeeper文件夹名称
+ENV ZK_PACKAGE_NAME zookeeper-3.4.12
+
+#定义kafka文件夹名称
+ENV KAFKA_PACKAGE_NAME kafka_2.11-1.1.0
+
+#将kafka的bin目录加入PATH
+ENV PATH $WORK_PATH/$KAFKA_PACKAGE_NAME/bin:$PATH
+
+#定义jdk1.8的文件夹
+ENV JDK_PACKAGE_FILE jdk1.8.0_171
+
+#定义jdk1.8的文件名
+ENV JDK_RPM_FILE jdk-8u171-linux-x64.rpm
+
+#创建工作目录
+RUN mkdir -p $WORK_PATH
+
+#创建日志目录
+RUN mkdir -p $LOG_PATH
+
+#创建zookeeper的Data目录
+RUN mkdir -p $ZK_DATA_PATH
+
+#把jdk1.8安装文件复制到工作目录
+COPY ./$JDK_RPM_FILE $WORK_PATH/
+
+#本地安装jdk1.8，如果不加后面的yum clean all，就会报错：Rpmdb checksum is invalid
+RUN yum -y localinstall $WORK_PATH/$JDK_RPM_FILE; yum clean all
+
+#删除jdk安装包文件
+RUN rm $WORK_PATH/$JDK_RPM_FILE
+
+#把kafka压缩文件复制到工作目录
+COPY ./$KAFKA_PACKAGE_NAME.tgz $WORK_PATH/
+
+#解压缩
+RUN tar -xvf $WORK_PATH/$KAFKA_PACKAGE_NAME.tgz -C $WORK_PATH/
+
+#删除压缩文件
+RUN rm $WORK_PATH/$KAFKA_PACKAGE_NAME.tgz
+
+#把zookeeper压缩文件复制到工作目录
+COPY ./$ZK_PACKAGE_NAME.tar.gz $WORK_PATH/
+
+#解压缩
+RUN tar -xvf $WORK_PATH/$ZK_PACKAGE_NAME.tar.gz -C $WORK_PATH/
+
+#复制配置文件
+RUN cp $WORK_PATH/$ZK_PACKAGE_NAME/conf/zoo_sample.cfg $WORK_PATH/$ZK_PACKAGE_NAME/conf/zoo.cfg
+
+#删除压缩文件
+RUN rm $WORK_PATH/$ZK_PACKAGE_NAME.tar.gz
+
+3.创建镜像
+# docker build -t kafkacluster:v1 .
+创建完成可以使用docker images查看镜像是否已经存在

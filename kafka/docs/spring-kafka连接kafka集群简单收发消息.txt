@@ -1,0 +1,78 @@
+1.pom文件添加依赖
+		<dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>${spring-kafka.version}</version>
+        </dependency>
+2.application.yml增加配置
+spring:
+  kafka:
+    bootstrap-servers: 192.168.71.135:19091,192.168.71.135:19092,192.168.71.135:19093
+    consumer:
+	  # 指定组名
+      group-id: kafka
+      auto-offset-reset: earliest
+		# earliest:当各分区下有已提交的offset时，从提交的offset开始消费；无提交的offset时，从头开始消费
+		# latest:当各分区下有已提交的offset时，从提交的offset开始消费；无提交的offset时，消费新产生的该分区下的数据
+		# none:topic各分区都存在已提交的offset时，从offset后开始消费；只要有一个分区不存在已提交的offset，则抛出异常
+	  # key/value的反序列化
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+	  # key/value的序列化
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+	  # 批量抓取
+      #batch-size: 65536
+      # 缓存容量
+      #buffer-memory: 524288
+3.创建class
+package com.hpb.kafka.controller;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@EnableAutoConfiguration
+public class KafkaController {
+
+    /**
+     * 注入kafkaTemplate
+     */
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+    /**
+     * 发送消息的方法
+     *
+     * @param key  推送数据的key
+     * @param data 推送数据的data
+     */
+    private void send(String key, String data) {
+        kafkaTemplate.send("test001", key, data);
+    }
+
+    @RequestMapping("/kafka")
+    public String testKafka() {
+        int iMax = 6;
+        for (int i = 1; i < iMax; i++) {
+            send("key" + i, "data" + i);
+        }
+        return "success";
+    }
+
+    @KafkaListener(topics = {"test001"})
+    public void receive(ConsumerRecord<?, ?> consumer) {
+        System.out.print("topic="+consumer.topic());
+        System.out.print(",key="+consumer.key());
+        System.out.println(",value="+consumer.value());
+    }
+}

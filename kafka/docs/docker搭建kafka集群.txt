@@ -1,0 +1,64 @@
+1.分别启动三台kafka集群，一台消息生产者，两台消息消费者
+# docker run -d -p 19011:22 -p19092:9092 --name="broker1" kafkacluster:v1
+# docker run -d -p 19012:22 -p29092:9092 --name="broker2" kafkacluster:v1
+# docker run -d -p 19013:22 -p39092:9092 --name="broker3" kafkacluster:v1
+# docker run -d -p 19014:22 --name="producer" kafkacluster:v1
+# docker run -d -p 19015:22 --name="consumer1" kafkacluster:v1
+# docker run -d -p 19016:22 --name="consumer2" kafkacluster:v1
+
+2.配置hosts
+分别ssh登陆进去broker1，broker2，broker3通过ip addr查看对应的IP，修改每个docker的hosts文件
+# vi /etc/hosts
+添加内容：
+broker1 172.18.0.2
+broker2 172.18.0.3
+broker3 172.18.0.4
+
+3.配置zookeeper集群
+分别登陆broker1，broker2，broker3，修改zookeeper目录下的conf/zoo.cfg文件
+# vi conf/zoo.cfg
+修改dataDir=/usr/local/work/zkdata
+添加内容：
+server.1=broker1:2887:3887
+server.2=broker2:2888:3888
+server.3=broker3:2889:3889
+每个docker配置各自的身份：
+broker1：echo 1 > /usr/local/work/zkdata/myid
+broker2：echo 2 > /usr/local/work/zkdata/myid
+broker3：echo 3 > /usr/local/work/zkdata/myid
+配置完成在broker1，broker2，broker3上分别启动zookeeper：
+/usr/local/work/zookeeper-3.4.12/bin/zkServer.sh start
+启动后，可以查看当前机器的zookeeper的状态：
+/usr/local/work/zookeeper-3.4.12/bin/zkServer.sh status
+三台机器中有一台是leader，其他为follower
+
+4.配置kafka集群
+1）分别登陆broker1，broker2，broker3，修改kafka目录下config/server.properties文件
+# vi config/server.properties
+broker.id=0 --> broker.id=1  --这里的值和本机的myid文件内容一致
+advertised.listeners=PLAINTEXT://192.168.71.135:19092		--ip和端口改为kafka对应的IP和端口
+zookeeper.connect=localhost:2181 --> zookeeper.connect=broker1:2181,broker2:2181,broker3:2181
+2）在broker1，broker2，broker3上分别启动：
+nohup /usr/local/work/kafka_2.11-1.1.0/bin/kafka-server-start.sh /usr/local/work/kafka_2.11-1.1.0/config/server.properties >/usr/local/work/log/kafka.log 2>/usr/local/work/log/kafka_err.log &
+3）验证消息服务：
+在broker1上创建一个主题test001：
+/usr/local/work/kafka_2.11-1.1.0/bin/kafka-topics.sh --create --zookeeper broker1:2181,broker2:2181,broker3:2181 --replication-factor 1 --partitions 3 --topic test001
+在broker2上查看主题列表：
+/usr/local/work/kafka_2.11-1.1.0/bin/kafka-topics.sh --list --zookeeper broker1:2181,broker2:2181,broker3:2181
+可以看到刚刚在broker1上创建的主题
+在broker1的/tmp/kafka-logs/目录下，可以看到新建的topic的partition文件夹，有个test001-2的目录，表明这是存放2号partition内容的地方，进入该文件夹，可以看到index和log文件；登录broker2和broker3可以分别看到test001-0和test001-1文件夹
+
+5.配置producer
+进入producer容器,修改kafka目录下config/server.properties文件：
+# vi config/server.properties
+zookeeper.connect=localhost:2181 --> zookeeper.connect=broker1:2181,broker2:2181,broker3:2181
+保存退出执行命令：
+/usr/local/work/kafka_2.11-1.1.0//bin/kafka-console-producer.sh --broker-list broker1:9092,broker2:9092,broker3:9092 --topic test001
+
+6.配置consumer
+依次登录consumer1、consumer2，都执行以下命令，即可进入接受消息的模式：
+/usr/local/work/kafka_2.11-1.1.0/bin/kafka-console-consumer.sh --zookeeper broker1:2181,broker1:2181,broker1:2181 --from-beginning --topic test001
+
+7.在producer容器上输入消息，再去consumer1和consumer2上可以看到消息全部收到
+
+
